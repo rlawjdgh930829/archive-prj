@@ -13,7 +13,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean id="dbProperty" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 				<value>classpath:/db.properties</value>
 		</property>
@@ -28,9 +28,12 @@
 	</bean>
 
 	<!-- mybatis SqlSessionFactoryBean -->
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory" destroy-method="close">
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml" />
+		<!-- 
+		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
+		 -->
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg ref="SqlSessionFactory"></constructor-arg>    
