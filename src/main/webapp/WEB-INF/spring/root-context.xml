@@ -30,12 +30,10 @@
 	<!-- mybatis SqlSessionFactoryBean -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
-		 -->
 	</bean>
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="SqlSessionFactory"></constructor-arg>    
 	</bean>
 	

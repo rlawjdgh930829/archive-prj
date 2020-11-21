@@ -1,6 +1,6 @@
 package com.spring.archive.DTO;
 
-public class Member {
+public class MemberDTO {
 	
 	private int member_no;
 	private String member_id;
