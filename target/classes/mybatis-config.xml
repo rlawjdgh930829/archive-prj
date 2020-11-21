@@ -3,6 +3,6 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="memberDTO" type="com.spring.archive.DTO.MemberDTO"></typeAlias>
+		<typeAlias alias="member" type="com.spring.archive.DTO.MemberDTO"></typeAlias>
 	</typeAliases>
 </configuration>

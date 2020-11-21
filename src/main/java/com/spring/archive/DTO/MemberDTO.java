@@ -5,7 +5,7 @@ public class MemberDTO {
 	private int member_no;
 	private String member_id;
 	private String member_pwd;
-	private String memeber_email;
+	private String member_email;
 	
 	public int getMember_no() {
 		return member_no;
@@ -25,11 +25,11 @@ public class MemberDTO {
 	public void setMember_pwd(String member_pwd) {
 		this.member_pwd = member_pwd;
 	}
-	public String getMemeber_email() {
-		return memeber_email;
+	public String getMember_email() {
+		return member_email;
 	}
-	public void setMemeber_email(String memeber_email) {
-		this.memeber_email = memeber_email;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 
 }

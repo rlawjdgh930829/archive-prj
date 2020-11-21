@@ -14,15 +14,19 @@ public class MemberController {
 	@Autowired
 	private MemberDAO dao;
 	
-	@RequestMapping(value = "/signupView", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String singupView() {
 		return "index.jsp?page=body/signup";
 	}
 	
-	@RequestMapping(value = "/singup", method = RequestMethod.POST)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String singup(MemberDTO member) {
-		System.out.println(dao.getMemeberMaxNo());
-		System.out.println(member.getMemeber_email());
+		Integer memberMaxNo = dao.getMemeberMaxNo();
+		if(memberMaxNo == null) {
+			memberMaxNo = 0;
+		}
+		member.setMember_no(memberMaxNo + 1);
+		Integer result = dao.insertMemeber(member);
 		return "redirect:/";
 	}
 }
