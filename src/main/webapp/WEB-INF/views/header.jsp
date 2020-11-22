@@ -21,6 +21,11 @@
 				</li>
 			</c:if>
 			<c:if test="${ USER != null }">
+				<c:if test="${ USER.member_no == 1 }">
+					<li class="nav-item">
+						<a class="nav-link" href="writing">글쓰기</a>
+					</li>
+				</c:if>
 				<li class="nav-item">
 					<a class="nav-link" href="logout">로그아웃</a>
 				</li>
