@@ -12,13 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<jsp:include page="header.jsp"/>
 	<c:set var="page" value="${ param.page }"></c:set>
-	<c:if test="${ page!=null }">
-		<jsp:include page="${ page }"></jsp:include>
-	</c:if>
-	<c:if test="${ page==null }">
-		<jsp:include page="body/home.jsp"/>
-	</c:if>
+	<jsp:include page="${ page }"></jsp:include>
+	
 </body>
 </html>

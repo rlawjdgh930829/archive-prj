@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.archive.DAO.BoardDAO;
 import com.spring.archive.DAO.CategoryDAO;
@@ -40,7 +41,17 @@ public class BoardController {
 		
 		board.setBoard_no(maxBoardNo+1);
 		board.setBoard_date(getTime);
+		board.setBoard_cnt(0);
+		boardDao.insertBoard(board);
+		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detailView(@RequestParam Integer no, Model model) {
+		BoardDTO boardDetail = boardDao.selectBoard(no);
+		model.addAttribute("DETAIL", boardDetail);
+		return "index.jsp?page=body/detail";
 	}
 	
 }

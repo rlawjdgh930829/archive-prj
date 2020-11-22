@@ -26,7 +26,7 @@ public class MemberController {
 			memberMaxNo = 0;
 		}
 		member.setMember_no(memberMaxNo + 1);
-		Integer result = dao.insertMemeber(member);
+		dao.insertMemeber(member);
 		return "redirect:/";
 	}
 }

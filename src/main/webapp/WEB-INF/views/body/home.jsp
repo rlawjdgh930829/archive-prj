@@ -12,8 +12,9 @@
 		<table class="table table-hover">
 			<thead><tr>
 					<th>글번호</th>
-					<th>글제목</th>
+					<th>분류</th>
 					<th>작성자</th>
+					<th>글제목</th>
 					<th>작성일</th>
 					<th>조회수</th>
 			</tr></thead>
@@ -22,13 +23,16 @@
 	    			<td colspan="5">등록된 글이 없습니다.</td>
 	    		</c:if>
 	    		<c:if test="${ BOARD != null }">
-					<tr>
-						<td>1</td>
-						<td>test-title</td>
-						<td>test-writer</td>
-						<td>test-date</td>
-						<td>1</td>
-					</tr>
+	    			<c:forEach items="${ BOARD }" var="board">
+		    			<tr>
+							<td>${ board.board_no }</td>
+							<td>${ board.category_name }</td>
+							<td>${ board.member_id }</td>
+							<td><a href="detail?no=${ board.board_no }">${ board.board_title }</a></td>
+							<td>${ board.board_date }</td>
+							<td>${ board.board_cnt }</td>
+						</tr>
+	    			</c:forEach>
 				</c:if>
 			</tbody>
 		</table>

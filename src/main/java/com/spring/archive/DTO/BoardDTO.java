@@ -9,6 +9,8 @@ public class BoardDTO {
 	private int board_cnt;
 	private int category_no;
 	private int member_no;
+	private String category_name;
+	private String member_id;
 	
 	public int getBoard_no() {
 		return board_no;
@@ -51,6 +53,18 @@ public class BoardDTO {
 	}
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
+	}
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	
 }
