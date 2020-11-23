@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,11 +52,31 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detailView(@RequestParam Integer no, Model model) {
-		boardDao.boardCntUp(no);
+	public String detailView(@RequestParam Integer no, Model model, HttpServletRequest request, HttpServletResponse response) {
+		boardCnt(no, request, response);
 		BoardDTO boardDetail = boardDao.selectBoard(no);
 		model.addAttribute("DETAIL", boardDetail);
 		return "index.jsp?page=body/detail";
+	}
+	
+	void boardCnt(Integer no, HttpServletRequest request, HttpServletResponse response) {
+		Cookie[] cookies = request.getCookies();
+		int flag = 0;
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("visit")) {
+				flag = 1;
+				if(!cookie.getValue().contains(no+"")) {
+					cookie.setValue(cookie.getValue()+"_"+no);
+					response.addCookie(cookie);
+					boardDao.boardCntUp(no);
+				}
+			}
+		}
+		if(flag == 0) {
+			Cookie newCookie = new Cookie("visit", no+"");
+			response.addCookie(newCookie);
+			boardDao.boardCntUp(no);
+		}
 	}
 	
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
