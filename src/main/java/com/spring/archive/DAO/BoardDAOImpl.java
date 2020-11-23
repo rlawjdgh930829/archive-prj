@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.archive.DTO.BoardDTO;
+import com.spring.archive.VO.PagingVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -47,6 +48,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void boardUpdate(BoardDTO board) {
 		session.update("board.boardUpdate", board);
+	}
+
+	@Override
+	public Integer countBoard() {
+		return session.selectOne("board.countBoard");
+	}
+
+	@Override
+	public List<BoardDTO> pagingBoard(PagingVO paging) {
+		return session.selectList("board.pagingBoard", paging);
 	}
 
 }

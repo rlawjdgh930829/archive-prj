@@ -3,6 +3,7 @@ package com.spring.archive.DAO;
 import java.util.List;
 
 import com.spring.archive.DTO.BoardDTO;
+import com.spring.archive.VO.PagingVO;
 
 public interface BoardDAO {
 	
@@ -13,5 +14,7 @@ public interface BoardDAO {
 	void boardCntUp(Integer no);
 	void boardDelete(Integer no);
 	void boardUpdate(BoardDTO board);
+	Integer countBoard();
+	List<BoardDTO> pagingBoard(PagingVO paging);
 	
 }

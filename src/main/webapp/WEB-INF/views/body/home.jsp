@@ -36,6 +36,25 @@
 				</c:if>
 			</tbody>
 		</table>
+		
+		<div>
+			<c:if test="${ PAGE.startPage != 1 }">
+				<a href="/?nowPage=${ PAGE.startPage - 1 }&cntPerPage=${ PAGE.cntPerPage }">&lt;</a>
+			</c:if>
+			<c:forEach begin="${PAGE.startPage }" end="${PAGE.endPage }" var="page">
+				<c:choose>
+					<c:when test="${ page == PAGE.nowPage }">
+						<b>${ page }</b>
+					</c:when>
+					<c:when test="${ page != PAGE.nowPage }">
+						<a href="/?nowPage=${ page }&cntPerPage=${ PAGE.cntPerPage }">${ page }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${ PAGE.endPage != PAGE.lastPage }">
+				<a href="/?nowPage=${ PAGE.endPage+1 }&cntPerPage=${ PAGE.cntPerPage }">&gt;</a>
+			</c:if>
+		</div>
 	</div>
 </body>
 </html>

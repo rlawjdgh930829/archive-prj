@@ -38,4 +38,21 @@
 			board_content = #{board_content}
 		where board_no = #{board_no}
 	</update>
+	<select id="countBoard" resultType="Integer">
+		select count(*) from board
+	</select>
+	<select id="pagingBoard" resultType="board" parameterType="paging">
+		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_date,  b.board_cnt
+    	from (
+        	select rownum rn, a.*
+            	from (
+            		select *
+            	    from board
+            		order by board_no desc
+        		) a
+    		) b, category c , member m
+		where b.category_no = c.category_no
+		and b.member_no = m.member_no
+		and rn between #{start} and #{end}
+	</select>
 </mapper>
