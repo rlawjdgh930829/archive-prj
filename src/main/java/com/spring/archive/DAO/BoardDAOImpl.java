@@ -34,4 +34,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectOne("board.selectBoard", no);
 	}
 
+	@Override
+	public void boardCntUp(Integer no) {
+		session.update("board.boardCntUp", no);
+	}
+
 }

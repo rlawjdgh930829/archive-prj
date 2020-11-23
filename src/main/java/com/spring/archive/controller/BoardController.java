@@ -49,6 +49,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detailView(@RequestParam Integer no, Model model) {
+		boardDao.boardCntUp(no);
 		BoardDTO boardDetail = boardDao.selectBoard(no);
 		model.addAttribute("DETAIL", boardDetail);
 		return "index.jsp?page=body/detail";

@@ -10,5 +10,6 @@ public interface BoardDAO {
 	Integer insertBoard(BoardDTO board);
 	List<BoardDTO> getAllBoard();
 	BoardDTO selectBoard(Integer no);
+	void boardCntUp(Integer no);
 	
 }

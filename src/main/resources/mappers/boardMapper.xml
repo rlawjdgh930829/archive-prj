@@ -22,4 +22,9 @@
 		and b.member_no = m.member_no
 		and b.board_no = #{no}
 	</select>
+	<update id="boardCntUp" parameterType="Integer">
+		update board
+		set board_cnt = board_cnt+1
+		where board_no = #{no}
+	</update>
 </mapper>
