@@ -12,5 +12,6 @@ public interface BoardDAO {
 	BoardDTO selectBoard(Integer no);
 	void boardCntUp(Integer no);
 	void boardDelete(Integer no);
+	void boardUpdate(BoardDTO board);
 	
 }

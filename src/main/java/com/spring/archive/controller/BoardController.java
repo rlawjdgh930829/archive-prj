@@ -61,4 +61,19 @@ public class BoardController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/boardModify", method = RequestMethod.GET)
+	public String boardModifyView(@RequestParam Integer no, Model model) {
+		BoardDTO boardDetail = boardDao.selectBoard(no);
+		List<CategoryDTO> categoryList = categoryDao.getAllCategory();
+		model.addAttribute("DETAIL", boardDetail);
+		model.addAttribute("CATEGORY", categoryList);
+		return "index.jsp?page=body/modify";
+	}
+	
+	@RequestMapping(value = "/boardModify", method = RequestMethod.POST)
+	public String boardModify(BoardDTO board) {
+		boardDao.boardUpdate(board);
+		return "redirect:/";
+	}
+	
 }

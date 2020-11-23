@@ -31,4 +31,11 @@
 		delete from board
 		where board_no = #{no}
 	</delete>
+	<update id="boardUpdate" parameterType="board">
+		update board set 
+			board_title = #{board_title},
+			category_no = #{category_no},
+			board_content = #{board_content}
+		where board_no = #{board_no}
+	</update>
 </mapper>

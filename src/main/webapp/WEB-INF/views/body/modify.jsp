@@ -11,22 +11,27 @@
 </head>
 <body>
 	<div class="container">
-		<h2>글등록</h2>
-		<form action="/writing" method="post">
-			<input type="hidden" value="${ USER.member_no }" name="member_no">
+		<h2>글수정</h2>
+		<form action="/boardModify" method="post">
+			<input type="hidden" value="${ DETAIL.board_no }" name="board_no">
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<input type="text" class="form-control" id="title" placeholder="Enter title" name="board_title">
+				<input type="text" class="form-control" value="${ DETAIL.board_title }" id="title" placeholder="Enter title" name="board_title">
 			</div>
 			<label for=category>Select list:</label>
 			<select class="form-control" id="category" name="category_no">
 				<c:forEach items="${ CATEGORY }" var="category">
-					<option value="${ category.category_no }">${ category.category_name }</option>
+					<c:if test="${ category.category_name == DETAIL.category_name }">
+						<option value="${ category.category_no }" selected>${ category.category_name }</option>
+					</c:if>
+					<c:if test="${ category.category_name != DETAIL.category_name }">
+						<option value="${ category.category_no }">${ category.category_name }</option>
+					</c:if>
 				</c:forEach>
 			</select>
 			<div class="form-group">
 				<label for="content">Contents:</label>
-				<textarea id="summernote" name="board_content"></textarea>
+				<textarea id="summernote" name="board_content">${ DETAIL.board_content }</textarea>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
