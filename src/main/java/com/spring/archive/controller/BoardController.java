@@ -55,4 +55,10 @@ public class BoardController {
 		return "index.jsp?page=body/detail";
 	}
 	
+	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
+	public String boardDelete(@RequestParam Integer no) {
+		boardDao.boardDelete(no);
+		return "redirect:/";
+	}
+	
 }

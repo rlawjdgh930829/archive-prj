@@ -16,7 +16,7 @@
 		order by b.board_no desc
 	</select>
 	<select id="selectBoard" parameterType="Integer" resultType="board">
-		select c.category_name, m.member_id, b.board_title, b.board_content, b.board_date,  b.board_cnt
+		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_content, b.board_date,  b.board_cnt
 		from board b, category c , member m
 		where b.category_no = c.category_no
 		and b.member_no = m.member_no
@@ -27,4 +27,8 @@
 		set board_cnt = board_cnt+1
 		where board_no = #{no}
 	</update>
+	<delete id="boardDelete" parameterType="Integer">
+		delete from board
+		where board_no = #{no}
+	</delete>
 </mapper>

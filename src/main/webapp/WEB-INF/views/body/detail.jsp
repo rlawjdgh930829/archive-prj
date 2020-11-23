@@ -12,7 +12,9 @@
 			분류: ${ DETAIL.category_name }<br/>
 			작성자: ${ DETAIL.member_id }<br/>
 			조회수: ${ DETAIL.board_cnt }<br/>
-			작성일: ${ DETAIL.board_date }
+			작성일: ${ DETAIL.board_date }<br/>
+			<a href="boardDelete?no=${ DETAIL.board_no }" class="btn btn-danger">삭제</a>
+			<a href="#" class="btn btn-info">수정</a>
 		</div>
 	</div>
 

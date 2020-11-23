@@ -39,4 +39,9 @@ public class BoardDAOImpl implements BoardDAO {
 		session.update("board.boardCntUp", no);
 	}
 
+	@Override
+	public void boardDelete(Integer no) {
+		session.delete("board.boardDelete", no);
+	}
+
 }

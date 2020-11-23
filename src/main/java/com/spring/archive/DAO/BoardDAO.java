@@ -11,5 +11,6 @@ public interface BoardDAO {
 	List<BoardDTO> getAllBoard();
 	BoardDTO selectBoard(Integer no);
 	void boardCntUp(Integer no);
+	void boardDelete(Integer no);
 	
 }
