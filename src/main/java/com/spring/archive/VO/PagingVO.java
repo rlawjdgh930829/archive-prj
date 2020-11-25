@@ -8,9 +8,10 @@ public class PagingVO {
 	private int total; // 총게시글
 	private int cntPerPage; // 페이지당 갯수
 	private int lastPage; // 마지막페이지
-	private int start; // 시작글
-	private int end; // 마지막글
+	private int start; // 쿼리star
+	private int end; // 쿼리end
 	private int cntPage = 5; // 한페이지에 10줄
+	private int categoryNo;
 	
 	public PagingVO() {}
 	public PagingVO(int total, int nowPage, int cntPerPage) {
@@ -96,6 +97,12 @@ public class PagingVO {
 	}
 	public void setCntPage(int cntPage) {
 		this.cntPage = cntPage;
+	}
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 
 }

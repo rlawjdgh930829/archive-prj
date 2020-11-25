@@ -16,5 +16,7 @@ public interface BoardDAO {
 	void boardUpdate(BoardDTO board);
 	Integer countBoard();
 	List<BoardDTO> pagingBoard(PagingVO paging);
+	Integer countCategoryBoard(Integer categoryNo);
+	List<BoardDTO> pagingCategoryBoard(PagingVO paging);
 	
 }

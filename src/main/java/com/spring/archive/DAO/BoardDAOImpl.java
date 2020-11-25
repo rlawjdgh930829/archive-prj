@@ -60,4 +60,14 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectList("board.pagingBoard", paging);
 	}
 
+	@Override
+	public Integer countCategoryBoard(Integer categoryNo) {
+		return session.selectOne("board.countCategoryBoard", categoryNo);
+	}
+
+	@Override
+	public List<BoardDTO> pagingCategoryBoard(PagingVO paging) {
+		return session.selectList("board.pagingCategoryBoard", paging);
+	}
+
 }

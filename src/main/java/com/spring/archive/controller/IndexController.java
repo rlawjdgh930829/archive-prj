@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.archive.DAO.BoardDAO;
+import com.spring.archive.DAO.CategoryDAO;
 import com.spring.archive.DAO.MemberDAO;
 import com.spring.archive.DTO.BoardDTO;
+import com.spring.archive.DTO.CategoryDTO;
 import com.spring.archive.DTO.MemberDTO;
 import com.spring.archive.VO.PagingVO;
 
@@ -24,11 +26,14 @@ public class IndexController {
 	private MemberDAO dao;
 	@Autowired
 	private BoardDAO bDao;
+	@Autowired
+	private CategoryDAO cDao;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, @RequestParam(required=false)String cntPerPage) {
-		Integer total = bDao.countBoard();
-		if (nowPage == null && cntPerPage == null) {
+	public String index(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, @RequestParam(required=false)String cntPerPage, @RequestParam(required=false)Integer categoryNo) {
+		Integer total = 0;
+		List<BoardDTO> getPagingBoard = null;
+		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "5";
 		} else if (nowPage == null) {
@@ -36,10 +41,20 @@ public class IndexController {
 		} else if (cntPerPage == null) { 
 			cntPerPage = "5";
 		}
-		paging = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		List<BoardDTO> getPagingBoard = bDao.pagingBoard(paging);
+		if(categoryNo == null || categoryNo == 0) {
+			total = bDao.countBoard();
+			paging = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			getPagingBoard = bDao.pagingBoard(paging);
+		} else {
+			total = bDao.countCategoryBoard(categoryNo);
+			paging = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			paging.setCategoryNo(categoryNo);
+			getPagingBoard = bDao.pagingCategoryBoard(paging);
+		}
+		List<CategoryDTO> getAllCategory = cDao.getAllCategory();
 		model.addAttribute("PAGE", paging);
 		model.addAttribute("BOARD", getPagingBoard);
+		model.addAttribute("CATEGORY", getAllCategory);
 		return "index.jsp?page=body/home";
 	}
 	

@@ -9,6 +9,22 @@
 <body>
 	<div class="container">
 		<h2>글목록</h2>
+		<ul class="breadcrumb">
+			<c:if test="${ PAGE.categoryNo == 0 || PAGE.categoryNo == null }">
+				<li class="breadcrumb-item active">전체글</li>
+			</c:if>
+			<c:if test="${ PAGE.categoryNo != 0 }">
+				<li class="breadcrumb-item active"><a href="/">전체글</a></li>
+			</c:if>
+			<c:forEach items="${ CATEGORY }" var="category">
+				<c:if test="${ PAGE.categoryNo == category.category_no }">
+					<li class="breadcrumb-item active">${ category.category_name }</li>
+				</c:if>
+				<c:if test="${ PAGE.categoryNo != category.category_no }">
+					<li class="breadcrumb-item"><a href="/?categoryNo=${ category.category_no }">${ category.category_name }</a></li>
+				</c:if>
+			</c:forEach>
+		</ul>
 		<table class="table table-hover">
 			<thead><tr>
 					<th>글번호</th>
@@ -37,24 +53,32 @@
 			</tbody>
 		</table>
 		
-		<div>
+		<ul class="pagination">
 			<c:if test="${ PAGE.startPage != 1 }">
-				<a href="/?nowPage=${ PAGE.startPage - 1 }&cntPerPage=${ PAGE.cntPerPage }">&lt;</a>
+				<li class="page-item">
+					<a href="/?nowPage=${ PAGE.startPage - 1 }&cntPerPage=${ PAGE.cntPerPage }&categoryNo=${ PAGE.categoryNo }" class="page-link">&lt;</a>
+				</li>
 			</c:if>
-			<c:forEach begin="${PAGE.startPage }" end="${PAGE.endPage }" var="page">
+			<c:forEach begin="${ PAGE.startPage }" end="${ PAGE.endPage }" var="page">
 				<c:choose>
 					<c:when test="${ page == PAGE.nowPage }">
-						<b>${ page }</b>
+						<li class="page-item disabled">
+							<a class="page-link">${ page }</a>
+						</li>
 					</c:when>
 					<c:when test="${ page != PAGE.nowPage }">
-						<a href="/?nowPage=${ page }&cntPerPage=${ PAGE.cntPerPage }">${ page }</a>
+						<li class="page-item">
+							<a href="/?nowPage=${ page }&cntPerPage=${ PAGE.cntPerPage }&categoryNo=${ PAGE.categoryNo }" class="page-link">${ page }</a>
+						</li>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${ PAGE.endPage != PAGE.lastPage }">
-				<a href="/?nowPage=${ PAGE.endPage+1 }&cntPerPage=${ PAGE.cntPerPage }">&gt;</a>
+				<li class="page-item">
+					<a href="/?nowPage=${ PAGE.endPage+1 }&cntPerPage=${ PAGE.cntPerPage }&categoryNo=${ PAGE.categoryNo }" class="page-link">&gt;</a>
+				</li>
 			</c:if>
-		</div>
+		</ul>
 	</div>
 </body>
 </html>
