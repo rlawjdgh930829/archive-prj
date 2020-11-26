@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,24 +13,26 @@
 <body>
 	<div class="container">
 		<h2>글등록</h2>
-		<form action="/writing" method="post">
-			<input type="hidden" value="${ USER.member_no }" name="member_no">
+		<form:form action="/writing" method="post" modelAttribute="boardDTO">
+			<form:input type="hidden" value="${ USER.member_no }" name="member_no" path="member_no"/>
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<input type="text" class="form-control" id="title" placeholder="Enter title" name="board_title">
+				<form:input type="text" class="form-control" id="title" placeholder="Enter title" name="board_title" path="board_title"/>
+				<font color="red"><form:errors path="board_title"></form:errors></font>
 			</div>
 			<label for=category>Select list:</label>
-			<select class="form-control" id="category" name="category_no">
+			<form:select class="form-control" id="category" name="category_no" path="category_no">
 				<c:forEach items="${ CATEGORY }" var="category">
-					<option value="${ category.category_no }">${ category.category_name }</option>
+					<form:option value="${ category.category_no }">${ category.category_name }</form:option>
 				</c:forEach>
-			</select>
+			</form:select>
 			<div class="form-group">
 				<label for="content">Contents:</label>
-				<textarea id="summernote" name="board_content"></textarea>
+				<form:textarea id="summernote" name="board_content" path="board_content"></form:textarea>
+				<font color="red"><form:errors path="board_content"></form:errors></font>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
+		</form:form>
 	</div>
 	
 	<script>

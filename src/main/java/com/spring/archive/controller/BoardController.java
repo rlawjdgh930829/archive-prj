@@ -7,10 +7,12 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,23 +34,30 @@ public class BoardController {
 	public String writingView(Model model) {
 		List<CategoryDTO> categoryList = categoryDao.getAllCategory();
 		model.addAttribute("CATEGORY", categoryList);
+		model.addAttribute(new BoardDTO());
 		return "index.jsp?page=body/writing";
 	}
 	
 	@RequestMapping(value = "/writing", method = RequestMethod.POST)
-	public String writing(BoardDTO board) {
-		Integer maxBoardNo = boardDao.getMaxBoardNo();
-		if(maxBoardNo == null) maxBoardNo = 0;
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date time = new Date();
-		String getTime = format.format(time);
-		
-		board.setBoard_no(maxBoardNo+1);
-		board.setBoard_date(getTime);
-		board.setBoard_cnt(0);
-		boardDao.insertBoard(board);
-		
-		return "redirect:/";
+	public String writing(@Valid BoardDTO board, BindingResult bindingResult, Model model) {
+		String returnValue = "";
+		if(bindingResult.hasErrors()) {
+			List<CategoryDTO> categoryList = categoryDao.getAllCategory();
+			model.addAttribute("CATEGORY", categoryList);
+			returnValue = "index.jsp?page=body/writing";
+		} else {
+			Integer maxBoardNo = boardDao.getMaxBoardNo();
+			if(maxBoardNo == null) maxBoardNo = 0;
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date time = new Date();
+			String getTime = format.format(time);
+			board.setBoard_no(maxBoardNo+1);
+			board.setBoard_date(getTime);
+			board.setBoard_cnt(0);
+			boardDao.insertBoard(board);
+			returnValue = "redirect:/";
+		}
+		return returnValue;
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)

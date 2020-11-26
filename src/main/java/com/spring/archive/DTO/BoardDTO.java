@@ -1,9 +1,13 @@
 package com.spring.archive.DTO;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class BoardDTO {
 	
 	private int board_no;
+	@NotEmpty(message = "제목을 입력해주세요.")
 	private String board_title;
+	@NotEmpty(message = "내용을 입력해주세요.")
 	private String board_content;
 	private String board_date;
 	private int board_cnt;
