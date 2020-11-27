@@ -30,24 +30,19 @@ public class IndexController {
 	private CategoryDAO cDao;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, @RequestParam(required=false)String cntPerPage, @RequestParam(required=false)Integer categoryNo) {
+	public String index(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, @RequestParam(required=false)Integer categoryNo) {
 		Integer total = 0;
 		List<BoardDTO> getPagingBoard = null;
-		if(nowPage == null && cntPerPage == null) {
+		if(nowPage == null) {
 			nowPage = "1";
-			cntPerPage = "5";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
 		}
 		if(categoryNo == null || categoryNo == 0) {
 			total = bDao.countBoard();
-			paging = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			paging = new PagingVO(total, Integer.parseInt(nowPage));
 			getPagingBoard = bDao.pagingBoard(paging);
 		} else {
 			total = bDao.countCategoryBoard(categoryNo);
-			paging = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			paging = new PagingVO(total, Integer.parseInt(nowPage));
 			paging.setCategoryNo(categoryNo);
 			getPagingBoard = bDao.pagingCategoryBoard(paging);
 		}

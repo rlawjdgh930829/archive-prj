@@ -6,15 +6,15 @@ public class PagingVO {
 	private int startPage; // 시작페이지
 	private int endPage; // 끝페이지
 	private int total; // 총게시글
-	private int cntPerPage; // 페이지당 갯수
+	private int cntPerPage = 5; // 페이지당 갯수
 	private int lastPage; // 마지막페이지
 	private int start; // 쿼리star
 	private int end; // 쿼리end
-	private int cntPage = 5; // 한페이지에 10줄
+	private int cntPage = 5; // 5개 페이지 목록 생성 ex)1 2 3 4 5
 	private int categoryNo;
 	
 	public PagingVO() {}
-	public PagingVO(int total, int nowPage, int cntPerPage) {
+	public PagingVO(int total, int nowPage) {
 		setNowPage(nowPage);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
