@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.spring.archive.DAO.BoardDAO;
 import com.spring.archive.DAO.CategoryDAO;
 import com.spring.archive.DTO.BoardDTO;
 import com.spring.archive.DTO.CategoryDTO;
+import com.spring.archive.DTO.MemberDTO;
 
 @Controller
 public class BoardController {
@@ -89,9 +91,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
-	public String boardDelete(@RequestParam Integer no) {
-		boardDao.boardDelete(no);
-		return "redirect:/";
+	public String boardDelete(@RequestParam Integer no, HttpSession session) {
+		String returnValue = "";
+		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
+		BoardDTO boardDetail = boardDao.selectBoard(no);
+		if(getUser.getMember_no() != boardDetail.getMember_no()) {
+			returnValue = "redirect:/detail?no="+no;
+		} else {
+			boardDao.boardDelete(no);
+			returnValue = "redirect:/";
+		}
+		return returnValue;
 	}
 	
 	@RequestMapping(value = "/boardModify", method = RequestMethod.GET)
