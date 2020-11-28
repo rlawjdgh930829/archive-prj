@@ -36,8 +36,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void boardCntUp(Integer no) {
-		session.update("board.boardCntUp", no);
+	public void boardViewCountUp(Integer no) {
+		session.update("board.boardViewCountUp", no);
 	}
 
 	@Override

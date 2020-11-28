@@ -14,22 +14,22 @@
 	<div class="container">
 		<h2>글등록</h2>
 		<form:form action="/writing" method="post" modelAttribute="boardDTO">
-			<form:input type="hidden" value="${ USER.member_no }" name="member_no" path="member_no"/>
+			<form:input type="hidden" value="${ USER.memberNo }" name="memberNo" path="memberNo"/>
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<form:input type="text" class="form-control" id="title" placeholder="Enter title" name="board_title" path="board_title"/>
-				<font color="red"><form:errors path="board_title"></form:errors></font>
+				<form:input type="text" class="form-control" id="title" placeholder="Enter title" name="boardTitle" path="boardTitle"/>
+				<font color="red"><form:errors path="boardTitle"></form:errors></font>
 			</div>
 			<label for=category>Select list:</label>
-			<form:select class="form-control" id="category" name="category_no" path="category_no">
+			<form:select class="form-control" id="category" name="categoryNo" path="categoryNo">
 				<c:forEach items="${ CATEGORY }" var="category">
-					<form:option value="${ category.category_no }">${ category.category_name }</form:option>
+					<form:option value="${ category.categoryNo }">${ category.categoryName }</form:option>
 				</c:forEach>
 			</form:select>
 			<div class="form-group">
 				<label for="content">Contents:</label>
-				<form:textarea id="summernote" name="board_content" path="board_content"></form:textarea>
-				<font color="red"><form:errors path="board_content"></form:errors></font>
+				<form:textarea id="summernote" name="boardContent" path="boardContent"></form:textarea>
+				<font color="red"><form:errors path="boardContent"></form:errors></font>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>

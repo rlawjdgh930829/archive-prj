@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +19,11 @@
 				<li class="breadcrumb-item active"><a href="/">전체글</a></li>
 			</c:if>
 			<c:forEach items="${ CATEGORY }" var="category">
-				<c:if test="${ PAGE.categoryNo == category.category_no }">
-					<li class="breadcrumb-item active">${ category.category_name }</li>
+				<c:if test="${ PAGE.categoryNo == category.categoryNo }">
+					<li class="breadcrumb-item active">${ category.categoryName }</li>
 				</c:if>
-				<c:if test="${ PAGE.categoryNo != category.category_no }">
-					<li class="breadcrumb-item"><a href="/?categoryNo=${ category.category_no }">${ category.category_name }</a></li>
+				<c:if test="${ PAGE.categoryNo != category.categoryNo }">
+					<li class="breadcrumb-item"><a href="/?categoryNo=${ category.categoryNo }">${ category.categoryName }</a></li>
 				</c:if>
 			</c:forEach>
 		</ul>
@@ -35,18 +37,18 @@
 					<th>조회수</th>
 			</tr></thead>
 	    	<tbody>
-	    		<c:if test="${ BOARD == null }">
-	    			<td colspan="5">등록된 글이 없습니다.</td>
+	    		<c:if test="${fn:length(BOARD) == 0}">
+	    			<td colspan="6">등록된 글이 없습니다.</td>
 	    		</c:if>
 	    		<c:if test="${ BOARD != null }">
 	    			<c:forEach items="${ BOARD }" var="board">
 		    			<tr>
-							<td>${ board.board_no }</td>
-							<td>${ board.category_name }</td>
-							<td>${ board.member_id }</td>
-							<td><a href="detail?no=${ board.board_no }">${ board.board_title }</a></td>
-							<td>${ board.board_date }</td>
-							<td>${ board.board_cnt }</td>
+							<td>${ board.boardNo }</td>
+							<td>${ board.categoryName }</td>
+							<td>${ board.memberId }</td>
+							<td><a href="detail?no=${ board.boardNo }">${ board.boardTitle }</a></td>
+							<td>${ board.boardDate }</td>
+							<td><fmt:formatNumber value="${ board.boardViewCount }"/></td>
 						</tr>
 	    			</c:forEach>
 				</c:if>

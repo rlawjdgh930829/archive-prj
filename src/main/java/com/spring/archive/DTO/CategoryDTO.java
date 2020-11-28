@@ -2,20 +2,20 @@ package com.spring.archive.DTO;
 
 public class CategoryDTO {
 	
-	private int category_no;
-	private String category_name;
+	private int categoryNo;
+	private String categoryName;
 	
-	public int getCategory_no() {
-		return category_no;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
-	public String getCategory_name() {
-		return category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 }

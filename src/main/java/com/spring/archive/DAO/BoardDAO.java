@@ -11,7 +11,7 @@ public interface BoardDAO {
 	Integer insertBoard(BoardDTO board);
 	List<BoardDTO> getAllBoard();
 	BoardDTO selectBoard(Integer no);
-	void boardCntUp(Integer no);
+	void boardViewCountUp(Integer no);
 	void boardDelete(Integer no);
 	void boardUpdate(BoardDTO board);
 	Integer countBoard();

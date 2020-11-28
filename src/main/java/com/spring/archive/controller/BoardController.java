@@ -28,9 +28,9 @@ import com.spring.archive.DTO.MemberDTO;
 public class BoardController {
 	
 	@Autowired
-	private CategoryDAO categoryDao;
-	@Autowired
 	private BoardDAO boardDao;
+	@Autowired
+	private CategoryDAO categoryDao;
 	
 	@RequestMapping(value = "/writing", method = RequestMethod.GET)
 	public String writingView(Model model) {
@@ -53,9 +53,9 @@ public class BoardController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date time = new Date();
 			String getTime = format.format(time);
-			board.setBoard_no(maxBoardNo+1);
-			board.setBoard_date(getTime);
-			board.setBoard_cnt(0);
+			board.setBoardNo(maxBoardNo+1);
+			board.setBoardDate(getTime);
+			board.setBoardViewCount(0);
 			boardDao.insertBoard(board);
 			returnValue = "redirect:/";
 		}
@@ -79,14 +79,14 @@ public class BoardController {
 				if(!cookie.getValue().contains(no+"")) {
 					cookie.setValue(cookie.getValue()+"_"+no);
 					response.addCookie(cookie);
-					boardDao.boardCntUp(no);
+					boardDao.boardViewCountUp(no);
 				}
 			}
 		}
 		if(flag == 0) {
 			Cookie newCookie = new Cookie("visit", no+"");
 			response.addCookie(newCookie);
-			boardDao.boardCntUp(no);
+			boardDao.boardViewCountUp(no);
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class BoardController {
 		String returnValue = "";
 		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
 		BoardDTO boardDetail = boardDao.selectBoard(no);
-		if(getUser.getMember_no() != boardDetail.getMember_no()) {
+		if(getUser.getMemberNo() != boardDetail.getMemberNo()) {
 			returnValue = "redirect:/detail?no="+no;
 		} else {
 			boardDao.boardDelete(no);

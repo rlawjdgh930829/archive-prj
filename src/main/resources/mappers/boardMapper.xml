@@ -3,75 +3,75 @@
 
 <mapper namespace="board">
 	<select id="getMaxBoardNo" resultType="Integer">
-		select max(board_no) from board
+		select max(boardNo) from board
 	</select>
 	<insert id="insertBoard" parameterType="board">
-		insert into board values(#{board_no}, #{board_title}, #{board_content}, #{board_date}, #{board_cnt}, #{category_no}, #{member_no})
+		insert into board values(#{boardNo}, #{boardTitle}, #{boardContent}, #{boardDate}, #{boardViewCount}, #{categoryNo}, #{memberNo})
 	</insert>
 	<select id="getAllBoard" resultType="board">
-		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_date,  b.board_cnt
+		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
 		from board b, category c , member m
-		where b.category_no = c.category_no
-		and b.member_no = m.member_no
-		order by b.board_no desc
+		where b.categoryNo = c.categoryNo
+		and b.memberNo = m.memberNo
+		order by b.boardNo desc
 	</select>
 	<select id="selectBoard" parameterType="Integer" resultType="board">
-		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_content, b.board_date,  b.board_cnt, m.member_no
+		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardContent, b.boardDate,  b.boardViewCount, m.memberNo
 		from board b, category c , member m
-		where b.category_no = c.category_no
-		and b.member_no = m.member_no
-		and b.board_no = #{no}
+		where b.categoryNo = c.categoryNo
+		and b.memberNo = m.memberNo
+		and b.boardNo = #{no}
 	</select>
-	<update id="boardCntUp" parameterType="Integer">
+	<update id="boardViewCountUp" parameterType="Integer">
 		update board
-		set board_cnt = board_cnt+1
-		where board_no = #{no}
+		set boardViewCount = boardViewCount+1
+		where boardNo = #{no}
 	</update>
 	<delete id="boardDelete" parameterType="Integer">
 		delete from board
-		where board_no = #{no}
+		where boardNo = #{no}
 	</delete>
 	<update id="boardUpdate" parameterType="board">
 		update board set 
-			board_title = #{board_title},
-			category_no = #{category_no},
-			board_content = #{board_content}
-		where board_no = #{board_no}
+			boardTitle = #{boardTitle},
+			categoryNo = #{categoryNo},
+			boardContent = #{boardContent}
+		where boardNo = #{boardNo}
 	</update>
 	<select id="countBoard" resultType="Integer">
 		select count(*) from board
 	</select>
 	<select id="pagingBoard" resultType="board" parameterType="paging">
-		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_date,  b.board_cnt
+		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
     	from (
         	select rownum rn, a.*
             	from (
             		select *
             	    from board
-            		order by board_no desc
+            		order by boardNo desc
         		) a
     		) b, category c , member m
-		where b.category_no = c.category_no
-		and b.member_no = m.member_no
-		and rn between #{start} and #{end}
+		where b.categoryNo = c.categoryNo
+		and b.memberNo = m.memberNo
+		and rn between #{queryStart} and #{queryEnd}
 	</select>
 	<select id="countCategoryBoard" resultType="Integer" parameterType="Integer">
 		select count(*) from board
-		where category_no = #{categoryNo}
+		where categoryNo = #{categoryNo}
 	</select>
 	<select id="pagingCategoryBoard" resultType="board" parameterType="paging">
-		select b.board_no, c.category_name, m.member_id, b.board_title, b.board_date,  b.board_cnt
+		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
     	from (
         	select rownum rn, a.*
             	from (
             		select *
             	    from board
-            	    where category_no = #{categoryNo}
-            		order by board_no desc
+            	    where categoryNo = #{categoryNo}
+            		order by boardNo desc
         		) a
     		) b, category c , member m
-		where b.category_no = c.category_no
-		and b.member_no = m.member_no
-		and rn between #{start} and #{end}
+		where b.categoryNo = c.categoryNo
+		and b.memberNo = m.memberNo
+		and rn between #{queryStart} and #{queryEnd}
 	</select>
 </mapper>

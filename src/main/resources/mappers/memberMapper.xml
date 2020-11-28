@@ -4,17 +4,17 @@
 <mapper namespace="member">
 
 	<select id="getMemberMaxNo" resultType="Integer">
-		select max(member_no) from member
+		select max(memberNo) from member
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
-		insert into member values (#{member_no}, #{member_id}, #{member_pwd}, #{member_email})
+		insert into member values (#{memberNo}, #{memberId}, #{memberPwd}, #{memberEmail})
 	</insert>
 	
 	<select id="selectMember" parameterType="member" resultType="member">
 		select * from member
-		where member_id = #{member_id}
-		and member_pwd = #{member_pwd}
+		where memberId = #{memberId}
+		and memberPwd = #{memberPwd}
 	</select>
 	
 </mapper>

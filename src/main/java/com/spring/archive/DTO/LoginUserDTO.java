@@ -2,15 +2,13 @@ package com.spring.archive.DTO;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class MemberDTO {
+public class LoginUserDTO {
 	
 	private int memberNo;
 	@NotEmpty(message = "아이디를 입력해주세요.")
 	private String memberId;
 	@NotEmpty(message = "비밀번호를 입력해주세요.")
 	private String memberPwd;
-	@NotEmpty(message = "이메일을 입력해주세요.")
-	private String memberEmail;
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -29,12 +27,6 @@ public class MemberDTO {
 	}
 	public void setMemberPwd(String memberPwd) {
 		this.memberPwd = memberPwd;
-	}
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
 	}
 
 }

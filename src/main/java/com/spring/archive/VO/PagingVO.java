@@ -2,32 +2,31 @@ package com.spring.archive.VO;
 
 public class PagingVO {
 	
-	private int nowPage; //현재페이지
-	private int startPage; // 시작페이지
-	private int endPage; // 끝페이지
-	private int total; // 총게시글
-	private int cntPerPage = 5; // 페이지당 갯수
-	private int lastPage; // 마지막페이지
-	private int start; // 쿼리star
-	private int end; // 쿼리end
-	private int cntPage = 5; // 5개 페이지 목록 생성 ex)1 2 3 4 5
+	private int nowPage;
+	private int startPage;
+	private int endPage;
+	private int totalBoardCount;
+	private int perPage = 5;
+	private int lastPage;
+	private int queryStart;
+	private int queryEnd;
+	private int maxPage = 5;
 	private int categoryNo;
 	
 	public PagingVO() {}
-	public PagingVO(int total, int nowPage) {
+	public PagingVO(int totalCountBoard, int nowPage) {
 		setNowPage(nowPage);
-		setCntPerPage(cntPerPage);
-		setTotal(total);
-		calcLastPage(getTotal(), getCntPerPage());
-		calcStartEndPage(getNowPage(), cntPage);
-		calcStartEnd(getNowPage(), getCntPerPage());
+		setperPage(perPage);
+		setTotalBoardCount(totalCountBoard);
+		calcLastPage(getTotalBoardCount(), getPerPage());
+		calcStartEndPage(getNowPage(), maxPage);
+		calcStartEnd(getNowPage(), getPerPage());
 	}
 	
-	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
 		setLastPage((int) Math.ceil((double)total / (double)cntPerPage));
 	}
-	// 시작, 끝 페이지 계산
+
 	public void calcStartEndPage(int nowPage, int cntPage) {
 		setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
 		if (getLastPage() < getEndPage()) {
@@ -38,10 +37,10 @@ public class PagingVO {
 			setStartPage(1);
 		}
 	}
-	// DB 쿼리에서 사용할 start, end값 계산
+
 	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage + 1);
+		setQueryEnd(nowPage * cntPerPage);
+		setQueryStart(getQueryEnd() - cntPerPage + 1);
 	}
 	
 	public int getNowPage() {
@@ -62,17 +61,17 @@ public class PagingVO {
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
 	}
-	public int getTotal() {
-		return total;
+	public int getTotalBoardCount() {
+		return totalBoardCount;
 	}
-	public void setTotal(int total) {
-		this.total = total;
+	public void setTotalBoardCount(int totalBoardCount) {
+		this.totalBoardCount = totalBoardCount;
 	}
-	public int getCntPerPage() {
-		return cntPerPage;
+	public int getPerPage() {
+		return perPage;
 	}
-	public void setCntPerPage(int cntPerPage) {
-		this.cntPerPage = cntPerPage;
+	public void setperPage(int perPage) {
+		this.perPage = perPage;
 	}
 	public int getLastPage() {
 		return lastPage;
@@ -80,23 +79,23 @@ public class PagingVO {
 	public void setLastPage(int lastPage) {
 		this.lastPage = lastPage;
 	}
-	public int getStart() {
-		return start;
+	public int getQueryStart() {
+		return queryStart;
 	}
-	public void setStart(int start) {
-		this.start = start;
+	public void setQueryStart(int queryStart) {
+		this.queryStart = queryStart;
 	}
-	public int getEnd() {
-		return end;
+	public int getQueryEnd() {
+		return queryEnd;
 	}
-	public void setEnd(int end) {
-		this.end = end;
+	public void setQueryEnd(int queryEnd) {
+		this.queryEnd = queryEnd;
 	}
-	public int getCntPage() {
-		return cntPage;
+	public int getMaxPage() {
+		return maxPage;
 	}
-	public void setCntPage(int cntPage) {
-		this.cntPage = cntPage;
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
 	}
 	public int getCategoryNo() {
 		return categoryNo;

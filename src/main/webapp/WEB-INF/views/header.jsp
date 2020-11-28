@@ -10,7 +10,6 @@
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<a class="navbar-brand" href="/">HOME</a>
   
-		<!-- Links -->
 		<ul class="navbar-nav ml-auto">
 			<c:if test="${ USER == null }">
 				<li class="nav-item">
@@ -21,11 +20,9 @@
 				</li>
 			</c:if>
 			<c:if test="${ USER != null }">
-				<c:if test="${ USER.member_no == 1 }">
-					<li class="nav-item">
-						<a class="nav-link" href="writing">글쓰기</a>
-					</li>
-				</c:if>
+				<li class="nav-item">
+					<a class="nav-link" href="writing">글쓰기</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="logout">로그아웃</a>
 				</li>

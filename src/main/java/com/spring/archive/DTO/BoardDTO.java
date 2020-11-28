@@ -4,71 +4,71 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class BoardDTO {
 	
-	private int board_no;
+	private int boardNo;
 	@NotEmpty(message = "제목을 입력해주세요.")
-	private String board_title;
+	private String boardTitle;
 	@NotEmpty(message = "내용을 입력해주세요.")
-	private String board_content;
-	private String board_date;
-	private int board_cnt;
-	private int category_no;
-	private int member_no;
-	private String category_name;
-	private String member_id;
+	private String boardContent;
+	private String boardDate;
+	private int boardViewCount;
+	private int categoryNo;
+	private int memberNo;
+	private String categoryName;
+	private String memberId;
 	
-	public int getBoard_no() {
-		return board_no;
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setBoard_no(int board_no) {
-		this.board_no = board_no;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
-	public String getBoard_title() {
-		return board_title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setBoard_title(String board_title) {
-		this.board_title = board_title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getBoard_content() {
-		return board_content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setBoard_content(String board_content) {
-		this.board_content = board_content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
-	public String getBoard_date() {
-		return board_date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setBoard_date(String board_date) {
-		this.board_date = board_date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
-	public int getBoard_cnt() {
-		return board_cnt;
+	public int getBoardViewCount() {
+		return boardViewCount;
 	}
-	public void setBoard_cnt(int board_cnt) {
-		this.board_cnt = board_cnt;
+	public void setBoardViewCount(int boardViewCount) {
+		this.boardViewCount = boardViewCount;
 	}
-	public int getCategory_no() {
-		return category_no;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
-	public int getMember_no() {
-		return member_no;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
-	public String getCategory_name() {
-		return category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 }

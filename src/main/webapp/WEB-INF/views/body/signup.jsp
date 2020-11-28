@@ -12,18 +12,18 @@
 		<form:form action="/signup" method="post" modelAttribute="memberDTO">
 			<div class="form-group">
 				<label for="id">ID:</label>
-				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="member_id" path="member_id"/>
-				<font color="red"><form:errors path="member_id"></form:errors></font>
+				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" path="memberId"/>
+				<font color="red"><form:errors path="memberId"></form:errors></font>
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password:</label>
-				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="member_pwd" path="member_pwd"/>
-				<font color="red"><form:errors path="member_pwd"></form:errors></font>
+				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" path="memberPwd"/>
+				<font color="red"><form:errors path="memberPwd"></form:errors></font>
 			</div>
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<form:input type="email" class="form-control" id="email" placeholder="Enter email" name="member_email" path="member_email"/>
-				<font color="red"><form:errors path="member_email"></form:errors></font>
+				<form:input type="email" class="form-control" id="email" placeholder="Enter email" name="memberEmail" path="memberEmail"/>
+				<font color="red"><form:errors path="memberEmail"></form:errors></font>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>

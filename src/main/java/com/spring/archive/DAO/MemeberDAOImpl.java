@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.archive.DTO.LoginUserDTO;
 import com.spring.archive.DTO.MemberDTO;
 
 @Repository
@@ -23,8 +24,8 @@ public class MemeberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberDTO selectMember(MemberDTO member) {
-		return session.selectOne("member.selectMember", member);
+	public MemberDTO selectMember(LoginUserDTO user) {
+		return session.selectOne("member.selectMember", user);
 	}
 
 }
