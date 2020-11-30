@@ -14,13 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(value = {"/writing", "/boardDelete", "/boardModify"})
-public class LoginCheckFilter implements Filter {
+public class LoginCheckFilter1 implements Filter {
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-
-	}
+	public void init(FilterConfig filterConfig) throws ServletException {}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -42,9 +39,6 @@ public class LoginCheckFilter implements Filter {
 	}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-
-	}
+	public void destroy() {}
 
 }
