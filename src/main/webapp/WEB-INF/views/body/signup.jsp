@@ -14,7 +14,7 @@
 			<div class="form-group">
 				<label for="id">ID:</label>
 				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" path="memberId"/>
-				<div class="check_font" id="id_check"></div>
+				<div id="id_check"></div>
 				<font color="red"><form:errors path="memberId"></form:errors></font>
 			</div>
 			<div class="form-group">
@@ -25,6 +25,7 @@
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<form:input type="email" class="form-control" id="email" placeholder="Enter email" name="memberEmail" path="memberEmail"/>
+				<div id="email_check"></div>
 				<font color="red"><form:errors path="memberEmail"></form:errors></font>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -45,6 +46,25 @@
 						if(userId == ""){
 							$('#id_check').text('아이디를 입력해주세요.');
 							$('#id_check').css('color', 'red');
+						}
+					}
+				}
+			});
+		});
+		
+		$("#email").blur(function() {
+			var emailId = $('#email').val();
+			$.ajax({
+				url : '/emailCheck?emailId='+ emailId,
+				type : 'get',
+				success : function(data) {
+					if(data == 1) {
+						$("#email_check").text("사용중인 이메일입니다.");
+						$("#email_check").css("color", "red");
+					} else {
+						if(emailId == ""){
+							$('#email_check').text('이메일을 입력해주세요.');
+							$('#email_check').css('color', 'red');
 						}
 					}
 				}

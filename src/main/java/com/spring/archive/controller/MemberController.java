@@ -73,4 +73,10 @@ public class MemberController {
 	public Integer idCheck(@RequestParam String userId) {
 		return memberDAO.idCheck(userId);
 	}
+	
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public Integer emailCheck(@RequestParam String emailId) {
+		return memberDAO.emailCheck(emailId);
+	}
 }

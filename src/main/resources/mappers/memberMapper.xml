@@ -22,4 +22,9 @@
 		where memberId = #{userId}
 	</select>
 	
+	<select id="emailCheck" parameterType="String" resultType="Integer">
+		select count(*) from member
+		where memberEmail = #{emailId}
+	</select>
+	
 </mapper>
