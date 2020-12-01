@@ -13,7 +13,7 @@
 			<h1>${ DETAIL.boardTitle }</h1>      
 			분류: ${ DETAIL.categoryName }<br/>
 			작성자: ${ DETAIL.memberId }<br/>
-			조회수: <fmt:formatNumber value="${ board.boardViewCount }"/><br/>
+			조회수: <fmt:formatNumber value="${ DETAIL.boardViewCount }"/><br/>
 			작성일: ${ DETAIL.boardDate }<br/>
 			<c:if test="${ DETAIL.memberNo == USER.memberNo }">
 				<a href="boardDelete?no=${ DETAIL.boardNo }" class="btn btn-danger">삭제</a>
