@@ -38,7 +38,15 @@
 				url : '/idCheck?userId='+ userId,
 				type : 'get',
 				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : "+ data);
+					if(data == 1) {
+						$("#id_check").text("사용중인 아이디입니다.");
+						$("#id_check").css("color", "red");
+					} else {
+						if(userId == ""){
+							$('#id_check').text('아이디를 입력해주세요.');
+							$('#id_check').css('color', 'red');
+						}
+					}
 				}
 			});
 		});
