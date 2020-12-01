@@ -8,5 +8,6 @@ public interface MemberDAO {
 	Integer getMemeberMaxNo();
 	Integer insertMemeber(MemberDTO member);
 	MemberDTO selectMember(LoginUserDTO user);
+	Integer idCheck(String userId);
 	
 }

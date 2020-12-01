@@ -17,4 +17,9 @@
 		and memberPwd = #{memberPwd}
 	</select>
 	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		select count(*) from member
+		where memberId = #{userId}
+	</select>
+	
 </mapper>
