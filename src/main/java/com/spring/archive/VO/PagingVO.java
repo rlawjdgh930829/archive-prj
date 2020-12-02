@@ -12,9 +12,11 @@ public class PagingVO {
 	private int queryEnd;
 	private int maxPage = 5;
 	private int categoryNo;
+	private String search;
 	
 	public PagingVO() {}
-	public PagingVO(int totalCountBoard, int nowPage) {
+	public PagingVO(int totalCountBoard, int nowPage, String search) {
+		setSearch(search.trim());
 		setNowPage(nowPage);
 		setperPage(perPage);
 		setTotalBoardCount(totalCountBoard);
@@ -102,6 +104,12 @@ public class PagingVO {
 	}
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 }

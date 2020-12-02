@@ -38,8 +38,9 @@
 			boardContent = #{boardContent}
 		where boardNo = #{boardNo}
 	</update>
-	<select id="countBoard" resultType="Integer">
+	<select id="countBoard" resultType="Integer" parameterType="String">
 		select count(*) from board
+		where boardTitle like '%'||#{search}||'%'
 	</select>
 	<select id="pagingBoard" resultType="board" parameterType="paging">
 		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
@@ -51,13 +52,15 @@
             		order by boardNo desc
         		) a
     		) b, category c , member m
-		where b.categoryNo = c.categoryNo
+		where b.boardTitle like '%'||#{search}||'%'
+		and b.categoryNo = c.categoryNo
 		and b.memberNo = m.memberNo
 		and rn between #{queryStart} and #{queryEnd}
 	</select>
-	<select id="countCategoryBoard" resultType="Integer" parameterType="Integer">
+	<select id="countCategoryBoard" resultType="Integer" parameterType="HashMap">
 		select count(*) from board
 		where categoryNo = #{categoryNo}
+		and boardTitle like '%'||#{search}||'%'
 	</select>
 	<select id="pagingCategoryBoard" resultType="board" parameterType="paging">
 		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
@@ -70,7 +73,8 @@
             		order by boardNo desc
         		) a
     		) b, category c , member m
-		where b.categoryNo = c.categoryNo
+		where b.boardTitle like '%'||#{search}||'%'
+		and b.categoryNo = c.categoryNo
 		and b.memberNo = m.memberNo
 		and rn between #{queryStart} and #{queryEnd}
 	</select>
