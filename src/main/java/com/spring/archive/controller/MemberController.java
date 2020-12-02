@@ -70,13 +70,23 @@ public class MemberController {
 	
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer idCheck(@RequestParam String userId) {
-		return memberDAO.idCheck(userId);
+	public Boolean idCheck(@RequestParam String userId) {
+		boolean returnValue = false;
+		Integer getIdCount = memberDAO.idCheck(userId);
+		if(getIdCount == 1) {
+			returnValue = true;
+		}
+		return returnValue;
 	}
 	
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer emailCheck(@RequestParam String emailId) {
-		return memberDAO.emailCheck(emailId);
+	public Boolean emailCheck(@RequestParam String emailId) {
+		boolean returnValue = false;
+		Integer getEmailCount = memberDAO.emailCheck(emailId);
+		if(getEmailCount == 1) {
+			returnValue = true;
+		}
+		return returnValue;
 	}
 }

@@ -39,14 +39,15 @@
 				url : '/idCheck?userId='+ userId,
 				type : 'get',
 				success : function(data) {
-					if(data == 1) {
+					if(userId == "") {
+						$('#id_check').text('아이디를 입력해주세요.');
+						$('#id_check').css('color', 'red');
+					} else if(data == true) {
 						$("#id_check").text("사용중인 아이디입니다.");
 						$("#id_check").css("color", "red");
-					} else {
-						if(userId == ""){
-							$('#id_check').text('아이디를 입력해주세요.');
-							$('#id_check').css('color', 'red');
-						}
+					} else if(data == false) {
+						$("#id_check").text("사용 가능한 아이디입니다.");
+						$("#id_check").css("color", "blue");
 					}
 				}
 			});
@@ -54,18 +55,23 @@
 		
 		$("#email").blur(function() {
 			var emailId = $('#email').val();
+			var	emailPatternCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 			$.ajax({
 				url : '/emailCheck?emailId='+ emailId,
 				type : 'get',
 				success : function(data) {
-					if(data == 1) {
+					if(emailId == ""){
+						$('#email_check').text('이메일을 입력해주세요.');
+						$('#email_check').css('color', 'red');
+					} else if(emailPatternCheck.test(emailId) == false) {
+						$('#email_check').text('이메일 형식에 맞게 입력해주세요.');
+						$('#email_check').css('color', 'red');
+					} else if(data == true) {
 						$("#email_check").text("사용중인 이메일입니다.");
 						$("#email_check").css("color", "red");
-					} else {
-						if(emailId == ""){
-							$('#email_check').text('이메일을 입력해주세요.');
-							$('#email_check').css('color', 'red');
-						}
+					} else if(data == false){
+						$("#email_check").text("사용 가능한 이메일입니다.");
+						$("#email_check").css("color", "blue");
 					}
 				}
 			});
