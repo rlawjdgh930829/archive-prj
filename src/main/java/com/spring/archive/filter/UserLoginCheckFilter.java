@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(value = {"/signup", "/signin"})
-public class LoginCheckFilter2 implements Filter {
+public class UserLoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {}

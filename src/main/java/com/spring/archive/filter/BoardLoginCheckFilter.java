@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(value = {"/writing", "/boardDelete", "/boardModify"})
-public class LoginCheckFilter1 implements Filter {
+public class BoardLoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {}
