@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,6 +14,7 @@
 			<div class="form-group">
 				<label for="id">ID:</label>
 				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" path="memberId"/>
+				<div id="id_check"></div>
 				<font color="red"><form:errors path="memberId"></form:errors></font>
 			</div>
 			<div class="form-group">
@@ -23,10 +25,57 @@
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<form:input type="email" class="form-control" id="email" placeholder="Enter email" name="memberEmail" path="memberEmail"/>
+				<div id="email_check"></div>
 				<font color="red"><form:errors path="memberEmail"></form:errors></font>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>
 	</div>
+	
+	<script>
+		$("#id").blur(function() {
+			var userId = $('#id').val();
+			$.ajax({
+				url : '/idCheck?userId='+ userId,
+				type : 'get',
+				success : function(data) {
+					if(userId == "") {
+						$('#id_check').text('아이디를 입력해주세요.');
+						$('#id_check').css('color', 'red');
+					} else if(data == true) {
+						$("#id_check").text("사용중인 아이디입니다.");
+						$("#id_check").css("color", "red");
+					} else if(data == false) {
+						$("#id_check").text("사용 가능한 아이디입니다.");
+						$("#id_check").css("color", "blue");
+					}
+				}
+			});
+		});
+		
+		$("#email").blur(function() {
+			var emailId = $('#email').val();
+			var	emailPatternCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			$.ajax({
+				url : '/emailCheck?emailId='+ emailId,
+				type : 'get',
+				success : function(data) {
+					if(emailId == ""){
+						$('#email_check').text('이메일을 입력해주세요.');
+						$('#email_check').css('color', 'red');
+					} else if(emailPatternCheck.test(emailId) == false) {
+						$('#email_check').text('이메일 형식에 맞게 입력해주세요.');
+						$('#email_check').css('color', 'red');
+					} else if(data == true) {
+						$("#email_check").text("사용중인 이메일입니다.");
+						$("#email_check").css("color", "red");
+					} else if(data == false){
+						$("#email_check").text("사용 가능한 이메일입니다.");
+						$("#email_check").css("color", "blue");
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.archive.DAO.MemberDAO;
 import com.spring.archive.DTO.LoginUserDTO;
@@ -62,6 +64,28 @@ public class MemberController {
 				session.setAttribute("USER", selectMemberResult);
 				returnValue = "redirect:/";
 			}
+		}
+		return returnValue;
+	}
+	
+	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public Boolean idCheck(@RequestParam String userId) {
+		boolean returnValue = false;
+		Integer getIdCount = memberDAO.idCheck(userId);
+		if(getIdCount == 1) {
+			returnValue = true;
+		}
+		return returnValue;
+	}
+	
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public Boolean emailCheck(@RequestParam String emailId) {
+		boolean returnValue = false;
+		Integer getEmailCount = memberDAO.emailCheck(emailId);
+		if(getEmailCount == 1) {
+			returnValue = true;
 		}
 		return returnValue;
 	}

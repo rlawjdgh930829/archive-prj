@@ -28,4 +28,14 @@ public class MemeberDAOImpl implements MemberDAO {
 		return session.selectOne("member.selectMember", user);
 	}
 
+	@Override
+	public Integer idCheck(String userId) {
+		return session.selectOne("member.idCheck", userId);
+	}
+
+	@Override
+	public Integer emailCheck(String emailId) {
+		return session.selectOne("member.emailCheck", emailId);
+	}
+
 }
