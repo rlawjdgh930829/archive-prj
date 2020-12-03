@@ -1,5 +1,6 @@
 package com.spring.archive.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -51,8 +52,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public Integer countBoard() {
-		return session.selectOne("board.countBoard");
+	public Integer countBoard(String search) {
+		return session.selectOne("board.countBoard", search);
 	}
 
 	@Override
@@ -61,8 +62,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public Integer countCategoryBoard(Integer categoryNo) {
-		return session.selectOne("board.countCategoryBoard", categoryNo);
+	public Integer countCategoryBoard(Integer categoryNo, String search) {
+		HashMap<String, Object> values = new HashMap<String, Object>();
+		values.put("categoryNo", categoryNo);
+		values.put("search", search);
+		return session.selectOne("board.countCategoryBoard", values);
 	}
 
 	@Override

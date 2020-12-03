@@ -55,6 +55,13 @@
 			</tbody>
 		</table>
 		
+		<form class="form-inline" action="/" method="get">
+			<input type="hidden" value="${ PAGE.nowPage }" name="nowPage">
+			<input type="hidden" value="${ PAGE.categoryNo }" name="categoryNo">
+			<input type="text" class="form-control" id="search" placeholder="Enter search" name="search"/>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		
 		<ul class="pagination">
 			<c:if test="${ PAGE.startPage != 1 }">
 				<li class="page-item">
