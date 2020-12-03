@@ -55,10 +55,17 @@
 			</tbody>
 		</table>
 		
+		<form class="form-inline" action="/" method="get">
+			<input type="hidden" value="${ PAGE.nowPage }" name="nowPage">
+			<input type="hidden" value="${ PAGE.categoryNo }" name="categoryNo">
+			<input type="text" class="form-control" id="search" placeholder="Enter search" name="search"/>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		
 		<ul class="pagination">
 			<c:if test="${ PAGE.startPage != 1 }">
 				<li class="page-item">
-					<a href="/?nowPage=${ PAGE.startPage - 1 }&categoryNo=${ PAGE.categoryNo }" class="page-link">&lt;</a>
+					<a href="/?nowPage=${ PAGE.startPage - 1 }&categoryNo=${ PAGE.categoryNo }&search=${ PAGE.search }" class="page-link">&lt;</a>
 				</li>
 			</c:if>
 			<c:forEach begin="${ PAGE.startPage }" end="${ PAGE.endPage }" var="page">
@@ -70,14 +77,14 @@
 					</c:when>
 					<c:when test="${ page != PAGE.nowPage }">
 						<li class="page-item">
-							<a href="/?nowPage=${ page }&categoryNo=${ PAGE.categoryNo }" class="page-link">${ page }</a>
+							<a href="/?nowPage=${ page }&categoryNo=${ PAGE.categoryNo }&search=${ PAGE.search }" class="page-link">${ page }</a>
 						</li>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${ PAGE.endPage != PAGE.lastPage }">
 				<li class="page-item">
-					<a href="/?nowPage=${ PAGE.endPage+1 }&categoryNo=${ PAGE.categoryNo }" class="page-link">&gt;</a>
+					<a href="/?nowPage=${ PAGE.endPage+1 }&categoryNo=${ PAGE.categoryNo }&search=${ PAGE.search }" class="page-link">&gt;</a>
 				</li>
 			</c:if>
 		</ul>

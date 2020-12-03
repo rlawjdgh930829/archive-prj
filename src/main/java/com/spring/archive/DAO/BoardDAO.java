@@ -14,9 +14,9 @@ public interface BoardDAO {
 	void boardViewCountUp(Integer no);
 	void boardDelete(Integer no);
 	void boardUpdate(BoardDTO board);
-	Integer countBoard();
+	Integer countBoard(String search);
 	List<BoardDTO> pagingBoard(PagingVO paging);
-	Integer countCategoryBoard(Integer categoryNo);
+	Integer countCategoryBoard(Integer categoryNo, String search);
 	List<BoardDTO> pagingCategoryBoard(PagingVO paging);
 	
 }
