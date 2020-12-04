@@ -1,4 +1,4 @@
-## 게임 발매정보 공유 사이트
+## 소개
 게임 발매에 대한 정보를 자유롭게 공유할 수 있는 게시판입니다.
 
 ## 기능
@@ -42,3 +42,12 @@ create table board (
 3. src/main/resources/dp.properties의 내용을 자신의 DB정보로 변경합니다.
 
 ## 스크린샷
+<img src="https://user-images.githubusercontent.com/50824326/101132696-c2e1f480-364a-11eb-8d76-fb8f2191994c.png" width="50%" height="50%"/>
+
+<img src="https://user-images.githubusercontent.com/50824326/101133378-fa04d580-364b-11eb-8718-52e4af611801.png" width="50%" height="50%"/>
+
+<img src="https://user-images.githubusercontent.com/50824326/101133632-74355a00-364c-11eb-991c-37163a9a0c7f.png" width="50%" height="50%"/>
+
+<img src="https://user-images.githubusercontent.com/50824326/101133675-8dd6a180-364c-11eb-9e18-1017a0aa3bf8.png" width="50%" height="50%"/>
+
+<img src="https://user-images.githubusercontent.com/50824326/101133711-a050db00-364c-11eb-8c4c-87fbce8e684d.png" width="50%" height="50%"/>
