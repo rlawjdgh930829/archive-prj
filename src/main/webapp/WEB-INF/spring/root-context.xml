@@ -15,7 +15,10 @@
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-				<value>classpath:/db.properties</value>
+			<list>
+				<!-- <value>classpath:/OracleDB.properties</value> -->
+				<value>classpath:/MysqlDB.properties</value>
+			</list>	
 		</property>
 	</bean>
 	
