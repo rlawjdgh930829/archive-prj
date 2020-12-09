@@ -40,42 +40,34 @@
 	</update>
 	<select id="countBoard" resultType="Integer" parameterType="String">
 		select count(*) from board
-		where boardTitle like '%'||#{search}||'%'
+		where boardTitle like concat('%',#{search},'%')
 	</select>
 	<select id="pagingBoard" resultType="board" parameterType="paging">
 		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
-    	from (
-        	select rownum rn, a.*
-            	from (
-            		select *
-            	    from board
-            		order by boardNo desc
-        		) a
-    		) b, category c , member m
-		where b.boardTitle like '%'||#{search}||'%'
+		from (
+			select * from board
+		) b, category c , member m
+		where b.boardTitle like concat('%',#{search},'%')
 		and b.categoryNo = c.categoryNo
 		and b.memberNo = m.memberNo
-		and rn between #{queryStart} and #{queryEnd}
+		order by b.boardNo desc
+		limit #{queryStart}, #{perPage}
 	</select>
 	<select id="countCategoryBoard" resultType="Integer" parameterType="HashMap">
 		select count(*) from board
 		where categoryNo = #{categoryNo}
-		and boardTitle like '%'||#{search}||'%'
+		and boardTitle like concat('%',#{search},'%')
 	</select>
 	<select id="pagingCategoryBoard" resultType="board" parameterType="paging">
 		select b.boardNo, c.categoryName, m.memberId, b.boardTitle, b.boardDate,  b.boardViewCount
-    	from (
-        	select rownum rn, a.*
-            	from (
-            		select *
-            	    from board
-            	    where categoryNo = #{categoryNo}
-            		order by boardNo desc
-        		) a
-    		) b, category c , member m
-		where b.boardTitle like '%'||#{search}||'%'
+		from (
+			select * from board
+			where categoryNo = #{categoryNo}
+		) b, category c , member m
+		where b.boardTitle like concat('%',#{search},'%')
 		and b.categoryNo = c.categoryNo
 		and b.memberNo = m.memberNo
-		and rn between #{queryStart} and #{queryEnd}
+		order by b.boardNo desc
+		limit #{queryStart}, #{perPage}
 	</select>
 </mapper>
