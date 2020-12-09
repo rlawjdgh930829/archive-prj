@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.archive.DAO.BoardDAO;
 import com.spring.archive.DAO.CategoryDAO;
+import com.spring.archive.DAO.CommentDAO;
 import com.spring.archive.DTO.BoardDTO;
 import com.spring.archive.DTO.CategoryDTO;
+import com.spring.archive.DTO.CommentDTO;
 import com.spring.archive.DTO.MemberDTO;
 
 @Controller
@@ -31,6 +33,8 @@ public class BoardController {
 	private BoardDAO boardDao;
 	@Autowired
 	private CategoryDAO categoryDao;
+	@Autowired
+	private CommentDAO commentDao;
 	
 	@RequestMapping(value = "/writing", method = RequestMethod.GET)
 	public String writingView(Model model) {
@@ -66,7 +70,12 @@ public class BoardController {
 	public String detailView(@RequestParam Integer no, Model model, HttpServletRequest request, HttpServletResponse response) {
 		boardCnt(no, request, response);
 		BoardDTO boardDetail = boardDao.selectBoard(no);
+		Integer commentCount = commentDao.getCommentCount(no);
+		List<CommentDTO> getComment = commentDao.getCommentList(no);
 		model.addAttribute("DETAIL", boardDetail);
+		model.addAttribute(new CommentDTO());
+		model.addAttribute("COMMENT", getComment);
+		model.addAttribute("COUNT", commentCount);
 		return "index.jsp?page=body/detail";
 	}
 	
