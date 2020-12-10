@@ -9,7 +9,10 @@
 		insert into comment values (#{commentNo}, #{commentContent}, #{boardNo}, #{memberNo})
 	</insert>
 	<select id="getCommentList" parameterType="Integer" resultType="comment">
-		select * from comment where boardNo = #{no}
+		select *
+		from comment c, member m
+		where c.memberNo = m.memberNo
+		and c.boardNo = #{no}
 	</select>
 	<select id="getCommentCount" parameterType="Integer" resultType="Integer">
 		select count(*) from comment where boardNo = #{no}

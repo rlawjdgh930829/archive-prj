@@ -14,22 +14,25 @@
 		</div>
 	</form:form>
 	Comment <span class="badge badge-pill badge-primary">${ COUNT }</span>
-	<div class="card">
-		<c:if test="${fn:length(COMMENT) == 0}">
-	    	<div class="card-body">
+	<c:if test="${fn:length(COMMENT) == 0}">
+		<div class="card">
+		    <div class="card-body">
 				<p class="card-text">등록된 댓글이 없습니다.</p>
 			</div>
-	   	</c:if>
-	    <c:if test="${ COMMENT != null }">
-	    	<c:forEach items="${ COMMENT }" var="comment">
-			<div class="card-body">
-				<h4 class="card-title">${ comment.memberNo }</h4>
-				<p class="card-text">${ comment.commentContent }</p>
-				<c:if test="${ USER.memberNo ==  comment.memberNo }">
-					<a href="commentDelete?bno=${ DETAIL.boardNo }&cno=${ comment.commentNo }" class="btn btn-danger">삭제</a>
-				</c:if>
+		</div>
+	</c:if>
+	<c:if test="${ COMMENT != null }">
+		<c:forEach items="${ COMMENT }" var="comment">
+	    	<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">${ comment.memberId }</h4>
+					<p class="card-text">${ comment.commentContent }</p>
+					<c:if test="${ USER.memberNo ==  comment.memberNo }">
+						<a href="commentDelete?bno=${ comment.boardNo }&cno=${ comment.commentNo }" class="btn btn-danger">삭제</a>
+					</c:if>
+				</div>
 			</div>
-			</c:forEach>
-		</c:if>
-	</div>
+		</c:forEach>
+	</c:if>
+	<br/>
 </div>

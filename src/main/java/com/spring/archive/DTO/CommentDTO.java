@@ -9,6 +9,7 @@ public class CommentDTO {
 	private String commentContent;
 	private Integer boardNo;
 	private Integer memberNo;
+	private String memberId;
 	
 	public Integer getCommentNo() {
 		return commentNo;
@@ -33,6 +34,12 @@ public class CommentDTO {
 	}
 	public void setMemberNo(Integer memberNo) {
 		this.memberNo = memberNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 }
