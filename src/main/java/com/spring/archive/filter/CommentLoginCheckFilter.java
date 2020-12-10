@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(value = {"/commentwriting", "/commentDelete"})
+@WebFilter(value = {"/commentDelete"})
 public class CommentLoginCheckFilter implements Filter {
 
 	@Override

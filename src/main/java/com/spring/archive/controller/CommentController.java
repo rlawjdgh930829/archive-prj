@@ -22,9 +22,12 @@ public class CommentController {
 	private CommentDAO commentDao;
 	
 	@RequestMapping(value = "/commentwriting", method = RequestMethod.POST)
-	public String commentWriting(@Valid CommentDTO comment, BindingResult bindingResult) {
+	public String commentWriting(@Valid CommentDTO comment, BindingResult bindingResult, HttpSession session) {
 		String returnValue = "";
-		if(bindingResult.hasErrors()) {
+		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
+		if(getUser == null) {
+			returnValue = "redirect:/signin";
+		} else if(bindingResult.hasErrors()) {
 			returnValue = "redirect:/detail?no="+comment.getBoardNo();
 		} else {
 			Integer maxCommentNo = commentDao.getMaxCommentNo();
@@ -38,7 +41,7 @@ public class CommentController {
 	
 	
 	@RequestMapping(value = "/commentDelete", method = RequestMethod.GET)
-	public String commentDelete(@RequestParam Integer bno, @RequestParam Integer cno,HttpSession session) {
+	public String commentDelete(@RequestParam Integer bno, @RequestParam Integer cno, HttpSession session) {
 		String returnValue = "";
 		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
 		CommentDTO commentDetail = commentDao.selectComment(cno);
