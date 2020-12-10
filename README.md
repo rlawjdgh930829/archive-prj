@@ -4,6 +4,7 @@
 ## 기능
  - 회원가입, 로그인을 할 수 있습니다.
  - 글쓰기, 글수정, 글삭제를 할 수 있습니다.
+ - 댓글쓰기, 댓글삭제를 할 수 있습니다.
  - Summernote를 적용하였습니다.
 
 ## 개발환경
@@ -38,6 +39,15 @@ create table board (
     foreign key(categoryNo) references category(categoryNo),
     foreign key(memberNo) references member(memberNo) on delete cascade
 );
+
+create table comment (
+    commentNo int(20) primary key,
+    commentContent varchar(100) not null,
+    boardNo int(20) not null,
+    memberNo int(20) not null,
+    foreign key(boardNo) references board(boardNo) on delete cascade,
+    foreign key(memberNo) references member(memberNo) on delete cascade
+);
 ```
 3. src/main/resources/MysqlDB.properties의 내용을 자신의 DB정보로 변경합니다.
 
@@ -50,4 +60,4 @@ create table board (
 
 <img src="https://user-images.githubusercontent.com/50824326/101133675-8dd6a180-364c-11eb-9e18-1017a0aa3bf8.png" width="50%" height="50%"/>
 
-<img src="https://user-images.githubusercontent.com/50824326/101133711-a050db00-364c-11eb-8c4c-87fbce8e684d.png" width="50%" height="50%"/>
+<img src="https://user-images.githubusercontent.com/50824326/101776927-077efb80-3b35-11eb-9ca3-3df30062f048.png" width="50%" height="50%"/>
