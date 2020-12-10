@@ -25,6 +25,9 @@
 			<div class="card-body">
 				<h4 class="card-title">${ comment.memberNo }</h4>
 				<p class="card-text">${ comment.commentContent }</p>
+				<c:if test="${ USER.memberNo ==  comment.memberNo }">
+					<a href="commentDelete?bno=${ DETAIL.boardNo }&cno=${ comment.commentNo }" class="btn btn-danger">삭제</a>
+				</c:if>
 			</div>
 			</c:forEach>
 		</c:if>

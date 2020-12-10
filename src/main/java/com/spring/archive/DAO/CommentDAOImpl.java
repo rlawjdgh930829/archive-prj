@@ -34,4 +34,14 @@ public class CommentDAOImpl implements CommentDAO {
 		return session.selectOne("comment.getCommentCount", no);
 	}
 
+	@Override
+	public CommentDTO selectComment(Integer cno) {
+		return session.selectOne("comment.selectComment", cno);
+	}
+
+	@Override
+	public Integer deleteComment(Integer cno) {
+		return session.delete("comment.deleteComment", cno);
+	}
+
 }

@@ -14,4 +14,10 @@
 	<select id="getCommentCount" parameterType="Integer" resultType="Integer">
 		select count(*) from comment where boardNo = #{no}
 	</select>
+	<select id="selectComment" parameterType="Integer" resultType="comment">
+		select * from comment where commentNo = #{cno}
+	</select>
+	<delete id="deleteComment" parameterType="Integer">
+		delete from comment where commentNo = #{cno}
+	</delete>
 </mapper>
