@@ -34,6 +34,7 @@ public class BoardLoginCheckFilter implements Filter {
 			chain.doFilter(httpRequest, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/signin");
+			request.setAttribute("ERROR", "noLogin");
 			dispatcher.forward(request, response);
 		}
 	}

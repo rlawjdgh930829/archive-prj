@@ -32,6 +32,7 @@ public class UserLoginCheckFilter implements Filter {
 		}
 		if(loginChack) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+			request.setAttribute("ERROR", "yesLogin");
 			dispatcher.forward(request, response);
 		} else {
 			chain.doFilter(httpRequest, response);
