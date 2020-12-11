@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${ ERROR == 'yesLogin' }">
+		<div class="alert alert-warning alert-dismissible">
+    		<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		<strong>Warning!</strong> 잘못된 접근 방법입니다. 로그인 중이므로 해당 페이지로 이동할 수 없습니다.
+  		</div>
+	</c:if>
 	<div class="container">
 		<h2>글목록</h2>
 		<ul class="breadcrumb">
