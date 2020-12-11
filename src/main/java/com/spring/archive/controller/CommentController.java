@@ -39,7 +39,6 @@ public class CommentController {
 		return returnValue;
 	}
 	
-	
 	@RequestMapping(value = "/commentDelete", method = RequestMethod.GET)
 	public String commentDelete(@RequestParam Integer bno, @RequestParam Integer cno, HttpSession session) {
 		String returnValue = "";

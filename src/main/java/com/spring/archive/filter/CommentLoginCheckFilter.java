@@ -34,6 +34,7 @@ public class CommentLoginCheckFilter implements Filter {
 			chain.doFilter(httpRequest, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/signin");
+			request.setAttribute("ERROR", "notLogin");
 			dispatcher.forward(request, response);
 		}
 	}
