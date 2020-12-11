@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${ ERROR == 'notLogin' }">
+		<div class="alert alert-warning alert-dismissible">
+    		<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		<strong>Warning!</strong> 잘못된 접근 방법입니다. 로그인 후 다시 시도 해주세요.
+  		</div>
+	</c:if>
 	<div class="container">
 		<h2>로그인</h2>
 		<form:form action="/signin" method="post" modelAttribute="loginUserDTO">

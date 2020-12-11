@@ -7,5 +7,6 @@
 		<typeAlias alias="category" type="com.spring.archive.DTO.CategoryDTO"/>
 		<typeAlias alias="board" type="com.spring.archive.DTO.BoardDTO"/>
 		<typeAlias alias="paging" type="com.spring.archive.VO.PagingVO"/>
+		<typeAlias alias="comment" type="com.spring.archive.DTO.CommentDTO"/>
 	</typeAliases>
 </configuration>

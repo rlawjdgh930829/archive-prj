@@ -21,9 +21,10 @@
 			</c:if>
 			</div>
 	</div>
-
 	<div class="container">
 		   ${ DETAIL.boardContent }
 	</div>
+	<hr>
+	<jsp:include page="comment.jsp"/>
 </body>
 </html>
