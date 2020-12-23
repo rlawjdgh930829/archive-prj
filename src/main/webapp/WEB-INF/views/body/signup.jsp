@@ -34,23 +34,29 @@
 	
 	<script>
 		$("#id").blur(function() {
+			var idPatternCheck = /^[a-zA-Z0-9]{4,12}$/
 			var userId = $('#id').val();
-			$.ajax({
-				url : '/idCheck?userId='+ userId,
-				type : 'get',
-				success : function(data) {
-					if(userId == "") {
-						$('#id_check').text('아이디를 입력해주세요.');
-						$('#id_check').css('color', 'red');
-					} else if(data == true) {
-						$("#id_check").text("사용중인 아이디입니다.");
-						$("#id_check").css("color", "red");
-					} else if(data == false) {
-						$("#id_check").text("사용 가능한 아이디입니다.");
-						$("#id_check").css("color", "blue");
+			if(userId == "") {
+				$('#id_check').text('아이디를 입력해주세요.');
+				$('#id_check').css('color', 'red');
+			} else if(idPatternCheck.test(userId) == false) {
+				$("#id_check").text("아이디는 영어와 숫자만 입력할 수 있습니다");
+				$("#id_check").css("color", "red");
+			} else {
+				$.ajax({
+					url : '/idCheck?userId='+ userId,
+					type : 'get',
+					success : function(data) {
+						if(data == true) {
+							$("#id_check").text("사용중인 아이디입니다.");
+							$("#id_check").css("color", "red");
+						} else if(data == false) {
+							$("#id_check").text("사용 가능한 아이디입니다.");
+							$("#id_check").css("color", "blue");
+						}
 					}
-				}
-			});
+				});
+			}
 		});
 		
 		$("#email").blur(function() {
