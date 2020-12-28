@@ -14,35 +14,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.archive.domain.BoardDTO;
 import com.spring.archive.domain.CategoryDTO;
 import com.spring.archive.domain.PagingVO;
-import com.spring.archive.repository.BoardDAO;
-import com.spring.archive.repository.CategoryDAO;
+import com.spring.archive.service.CategoryService;
+import com.spring.archive.service.HomeService;
 
 @Controller
-public class IndexController {
+public class HomeController {
 	
 	@Autowired
-	private BoardDAO boardDao;
+	private HomeService homeService;
 	@Autowired
-	private CategoryDAO categoryDao;
+	private CategoryService categoryService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, 
+	public String home(Model model, PagingVO paging, @RequestParam(required=false)String nowPage, 
 			@RequestParam(required=false)Integer categoryNo, @RequestParam(required=false)String search) {
 		Integer totalCountBoard = 0;
 		List<BoardDTO> getPagingBoard;
 		if(nowPage == null) nowPage = "1";
 		if(search == null) search = "";
 		if(categoryNo == null || categoryNo == 0) {
-			totalCountBoard = boardDao.countBoard(search);
-			paging = new PagingVO(totalCountBoard, Integer.parseInt(nowPage), search);
-			getPagingBoard = boardDao.pagingBoard(paging);
+			totalCountBoard = homeService.countBoardService(search);
+			paging = homeService.createPageService(totalCountBoard, nowPage, search);
+			getPagingBoard = homeService.pagingBoardService(paging);
 		} else {
-			totalCountBoard = boardDao.countCategoryBoard(categoryNo, search);
-			paging = new PagingVO(totalCountBoard, Integer.parseInt(nowPage), search);
+			totalCountBoard = homeService.countCategoryBoardService(categoryNo, search);
+			paging = homeService.createPageService(totalCountBoard, nowPage, search);
 			paging.setCategoryNo(categoryNo);
-			getPagingBoard = boardDao.pagingCategoryBoard(paging);
+			getPagingBoard = homeService.pagingCategoryBoard(paging);
 		}
-		List<CategoryDTO> getAllCategory = categoryDao.getAllCategory();
+		List<CategoryDTO> getAllCategory = categoryService.getAllCategoryService();
 		model.addAttribute("PAGE", paging);
 		model.addAttribute("BOARD", getPagingBoard);
 		model.addAttribute("CATEGORY", getAllCategory);

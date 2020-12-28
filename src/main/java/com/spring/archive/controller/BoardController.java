@@ -25,20 +25,23 @@ import com.spring.archive.domain.MemberDTO;
 import com.spring.archive.repository.BoardDAO;
 import com.spring.archive.repository.CategoryDAO;
 import com.spring.archive.repository.CommentDAO;
+import com.spring.archive.service.BoardService;
+import com.spring.archive.service.CategoryService;
 
 @Controller
 public class BoardController {
 	
+	
 	@Autowired
-	private BoardDAO boardDao;
+	private CategoryService categoryService;
 	@Autowired
-	private CategoryDAO categoryDao;
+	private BoardService boardService;
 	@Autowired
 	private CommentDAO commentDao;
 	
 	@RequestMapping(value = "/writing", method = RequestMethod.GET)
 	public String writingView(Model model) {
-		List<CategoryDTO> categoryList = categoryDao.getAllCategory();
+		List<CategoryDTO> categoryList = categoryService.getAllCategoryService();
 		model.addAttribute("CATEGORY", categoryList);
 		model.addAttribute(new BoardDTO());
 		return "index.jsp?page=body/writing";
@@ -48,19 +51,11 @@ public class BoardController {
 	public String writing(@Valid BoardDTO board, BindingResult bindingResult, Model model) {
 		String returnValue = "";
 		if(bindingResult.hasErrors()) {
-			List<CategoryDTO> categoryList = categoryDao.getAllCategory();
+			List<CategoryDTO> categoryList = categoryService.getAllCategoryService();
 			model.addAttribute("CATEGORY", categoryList);
 			returnValue = "index.jsp?page=body/writing";
 		} else {
-			Integer maxBoardNo = boardDao.getMaxBoardNo();
-			if(maxBoardNo == null) maxBoardNo = 0;
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date time = new Date();
-			String getTime = format.format(time);
-			board.setBoardNo(maxBoardNo+1);
-			board.setBoardDate(getTime);
-			board.setBoardViewCount(0);
-			boardDao.insertBoard(board);
+			boardService.boardWritingService(board);
 			returnValue = "redirect:/";
 		}
 		return returnValue;
@@ -68,8 +63,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detailView(@RequestParam Integer no, Model model, HttpServletRequest request, HttpServletResponse response) {
-		boardCnt(no, request, response);
-		BoardDTO boardDetail = boardDao.selectBoard(no);
+		boardService.boardViewCountUpService(no, request, response);
+		BoardDTO boardDetail = boardService.selectBoardService(no);
 		Integer commentCount = commentDao.getCommentCount(no);
 		List<CommentDTO> getComment = commentDao.getCommentList(no);
 		model.addAttribute("DETAIL", boardDetail);
@@ -79,35 +74,15 @@ public class BoardController {
 		return "index.jsp?page=body/detail";
 	}
 	
-	void boardCnt(Integer no, HttpServletRequest request, HttpServletResponse response) {
-		Cookie[] cookies = request.getCookies();
-		int flag = 0;
-		for (Cookie cookie : cookies) {
-			if(cookie.getName().equals("visit")) {
-				flag = 1;
-				if(!cookie.getValue().contains(no+"")) {
-					cookie.setValue(cookie.getValue()+"_"+no);
-					response.addCookie(cookie);
-					boardDao.boardViewCountUp(no);
-				}
-			}
-		}
-		if(flag == 0) {
-			Cookie newCookie = new Cookie("visit", no+"");
-			response.addCookie(newCookie);
-			boardDao.boardViewCountUp(no);
-		}
-	}
-	
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
 	public String boardDelete(@RequestParam Integer no, HttpSession session) {
 		String returnValue = "";
 		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
-		BoardDTO boardDetail = boardDao.selectBoard(no);
+		BoardDTO boardDetail = boardService.selectBoardService(no);
 		if(getUser.getMemberNo() != boardDetail.getMemberNo()) {
 			returnValue = "redirect:/detail?no="+no;
 		} else {
-			boardDao.boardDelete(no);
+			boardService.boardDeleteService(no);
 			returnValue = "redirect:/";
 		}
 		return returnValue;
@@ -117,11 +92,11 @@ public class BoardController {
 	public String boardModifyView(@RequestParam Integer no, Model model, HttpSession session) {
 		String returnValue = "";
 		MemberDTO getUser = (MemberDTO)session.getAttribute("USER");
-		BoardDTO boardDetail = boardDao.selectBoard(no);
+		BoardDTO boardDetail = boardService.selectBoardService(no);
 		if(getUser.getMemberNo() != boardDetail.getMemberNo()) {
 			returnValue = "redirect:/detail?no="+no;
 		} else {
-			List<CategoryDTO> categoryList = categoryDao.getAllCategory();
+			List<CategoryDTO> categoryList = categoryService.getAllCategoryService();
 			model.addAttribute("DETAIL", boardDetail);
 			model.addAttribute("CATEGORY", categoryList);
 			returnValue = "index.jsp?page=body/modify";
@@ -131,7 +106,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardModify", method = RequestMethod.POST)
 	public String boardModify(BoardDTO board) {
-		boardDao.boardUpdate(board);
+		boardService.boardUpdateService(board);
 		return "redirect:/";
 	}
 	

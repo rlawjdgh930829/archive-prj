@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.archive.domain.LoginUserDTO;
 import com.spring.archive.domain.MemberDTO;
-import com.spring.archive.repository.MemberDAO;
 import com.spring.archive.service.MemberService;
 
 @Controller
