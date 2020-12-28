@@ -1,10 +1,7 @@
 package com.spring.archive.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,8 +19,6 @@ import com.spring.archive.domain.BoardDTO;
 import com.spring.archive.domain.CategoryDTO;
 import com.spring.archive.domain.CommentDTO;
 import com.spring.archive.domain.MemberDTO;
-import com.spring.archive.repository.BoardDAO;
-import com.spring.archive.repository.CategoryDAO;
 import com.spring.archive.repository.CommentDAO;
 import com.spring.archive.service.BoardService;
 import com.spring.archive.service.CategoryService;
