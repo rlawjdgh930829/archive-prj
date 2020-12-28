@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.archive.DAO.MemberDAO;
-import com.spring.archive.DTO.LoginUserDTO;
-import com.spring.archive.DTO.MemberDTO;
+import com.spring.archive.domain.LoginUserDTO;
+import com.spring.archive.domain.MemberDTO;
+import com.spring.archive.service.MemberService;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
-	private MemberDAO memberDAO;
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String singupView(Model model) {
@@ -34,12 +34,7 @@ public class MemberController {
 		if(bindingResult.hasErrors()) {
 			returnValue = "index.jsp?page=body/signup";
 		} else {
-			Integer memberMaxNo = memberDAO.getMemeberMaxNo();
-			if(memberMaxNo == null) {
-				memberMaxNo = 0;
-			}
-			member.setMemberNo(memberMaxNo + 1);
-			memberDAO.insertMemeber(member);
+			memberService.memberSingupService(member);
 			returnValue = "redirect:/";
 		}
 		return returnValue;
@@ -57,7 +52,7 @@ public class MemberController {
 		if(bindingResult.hasErrors()) {
 			returnValue = "index.jsp?page=body/signin";
 		} else {
-			MemberDTO selectMemberResult = memberDAO.selectMember(user);
+			MemberDTO selectMemberResult = memberService.selectMemberService(user);
 			if(selectMemberResult == null) {
 				returnValue = "redirect:/signin";
 			} else {
@@ -72,7 +67,7 @@ public class MemberController {
 	@ResponseBody
 	public Boolean idCheck(@RequestParam String userId) {
 		boolean returnValue = false;
-		Integer getIdCount = memberDAO.idCheck(userId);
+		Integer getIdCount = memberService.idCheckService(userId);
 		if(getIdCount == 1) {
 			returnValue = true;
 		}
@@ -83,7 +78,7 @@ public class MemberController {
 	@ResponseBody
 	public Boolean emailCheck(@RequestParam String emailId) {
 		boolean returnValue = false;
-		Integer getEmailCount = memberDAO.emailCheck(emailId);
+		Integer getEmailCount = memberService.emailCheckService(emailId);
 		if(getEmailCount == 1) {
 			returnValue = true;
 		}
