@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.archive.DAO.BoardDAO;
-import com.spring.archive.DAO.CategoryDAO;
-import com.spring.archive.DAO.CommentDAO;
-import com.spring.archive.DTO.BoardDTO;
-import com.spring.archive.DTO.CategoryDTO;
-import com.spring.archive.DTO.CommentDTO;
-import com.spring.archive.DTO.MemberDTO;
+import com.spring.archive.domain.BoardDTO;
+import com.spring.archive.domain.CategoryDTO;
+import com.spring.archive.domain.CommentDTO;
+import com.spring.archive.domain.MemberDTO;
+import com.spring.archive.repository.BoardDAO;
+import com.spring.archive.repository.CategoryDAO;
+import com.spring.archive.repository.CommentDAO;
 
 @Controller
 public class BoardController {

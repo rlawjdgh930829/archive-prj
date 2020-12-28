@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.archive.DAO.BoardDAO;
-import com.spring.archive.DAO.CategoryDAO;
-import com.spring.archive.DTO.BoardDTO;
-import com.spring.archive.DTO.CategoryDTO;
-import com.spring.archive.VO.PagingVO;
+import com.spring.archive.domain.BoardDTO;
+import com.spring.archive.domain.CategoryDTO;
+import com.spring.archive.domain.PagingVO;
+import com.spring.archive.repository.BoardDAO;
+import com.spring.archive.repository.CategoryDAO;
 
 @Controller
 public class IndexController {

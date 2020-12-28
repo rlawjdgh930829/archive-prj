@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.archive.DAO.CommentDAO;
-import com.spring.archive.DTO.BoardDTO;
-import com.spring.archive.DTO.CommentDTO;
-import com.spring.archive.DTO.MemberDTO;
+import com.spring.archive.domain.BoardDTO;
+import com.spring.archive.domain.CommentDTO;
+import com.spring.archive.domain.MemberDTO;
+import com.spring.archive.repository.CommentDAO;
 
 @Controller
 public class CommentController {

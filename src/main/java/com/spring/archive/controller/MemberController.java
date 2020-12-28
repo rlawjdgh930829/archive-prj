@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.archive.DAO.MemberDAO;
-import com.spring.archive.DTO.LoginUserDTO;
-import com.spring.archive.DTO.MemberDTO;
+import com.spring.archive.domain.LoginUserDTO;
+import com.spring.archive.domain.MemberDTO;
+import com.spring.archive.repository.MemberDAO;
 
 @Controller
 public class MemberController {
