@@ -1,5 +1,7 @@
 package com.spring.archive.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,16 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void deleteCommentService(Integer cno) {
 		commentDao.deleteComment(cno);
+	}
+
+	@Override
+	public Integer getCommentCountService(Integer no) {
+		return commentDao.getCommentCount(no);
+	}
+
+	@Override
+	public List<CommentDTO> getCommentListService(Integer no) {
+		return commentDao.getCommentList(no);
 	}
 
 }

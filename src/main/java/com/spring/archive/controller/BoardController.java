@@ -19,20 +19,19 @@ import com.spring.archive.domain.BoardDTO;
 import com.spring.archive.domain.CategoryDTO;
 import com.spring.archive.domain.CommentDTO;
 import com.spring.archive.domain.MemberDTO;
-import com.spring.archive.repository.CommentDAO;
 import com.spring.archive.service.BoardService;
 import com.spring.archive.service.CategoryService;
+import com.spring.archive.service.CommentService;
 
 @Controller
 public class BoardController {
-	
 	
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
 	private BoardService boardService;
 	@Autowired
-	private CommentDAO commentDao;
+	private CommentService commentService;
 	
 	@RequestMapping(value = "/writing", method = RequestMethod.GET)
 	public String writingView(Model model) {
@@ -60,8 +59,8 @@ public class BoardController {
 	public String detailView(@RequestParam Integer no, Model model, HttpServletRequest request, HttpServletResponse response) {
 		boardService.boardViewCountUpService(no, request, response);
 		BoardDTO boardDetail = boardService.selectBoardService(no);
-		Integer commentCount = commentDao.getCommentCount(no);
-		List<CommentDTO> getComment = commentDao.getCommentList(no);
+		Integer commentCount = commentService.getCommentCountService(no);
+		List<CommentDTO> getComment = commentService.getCommentListService(no);
 		model.addAttribute("DETAIL", boardDetail);
 		model.addAttribute(new CommentDTO());
 		model.addAttribute("COMMENT", getComment);
