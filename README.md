@@ -49,7 +49,7 @@ create table comment (
     foreign key(memberNo) references member(memberNo) on delete cascade
 );
 ```
-3. src/main/resources/MysqlDB.properties의 내용을 자신의 DB정보로 변경합니다.
+3. src/main/resources/db.properties의 내용을 자신의 DB정보로 변경합니다.
 
 ## 스크린샷
 <img src="https://user-images.githubusercontent.com/50824326/101132696-c2e1f480-364a-11eb-8d76-fb8f2191994c.png" width="50%" height="50%"/>

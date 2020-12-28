@@ -17,7 +17,7 @@
 		<property name="locations">
 			<list>
 				<!-- <value>classpath:/OracleDB.properties</value> -->
-				<value>classpath:/MysqlDB.properties</value>
+				<value>classpath:/db.properties</value>
 			</list>	
 		</property>
 	</bean>
