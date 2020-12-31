@@ -19,7 +19,7 @@
 		<form:form action="/signin" method="post" modelAttribute="loginUserDTO">
 			<div class="form-group">
 				<label for="id">ID:</label>
-				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" path="memberId"/>
+				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" maxlength="10" path="memberId"/>
 				<font color="red"><form:errors path="memberId"></form:errors></font>
 			</div>
 			<div class="form-group">
