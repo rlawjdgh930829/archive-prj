@@ -12,6 +12,7 @@
 		<h2>회원가입</h2>
 		<input type="hidden" id="idCheck" value="false">
 		<input type="hidden" id="emailCheck" value="false">
+		<input type="hidden" id="pwdCheck" value="false">
 		<form:form action="/signup" method="post" modelAttribute="memberDTO">
 			<div class="form-group">
 				<label for="id">ID:</label>
@@ -22,6 +23,7 @@
 			<div class="form-group">
 				<label for="pwd">Password:</label>
 				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" path="memberPwd"/>
+				<div id="pwd_check"></div>
 				<font color="red"><form:errors path="memberPwd"></form:errors></font>
 			</div>
 			<div class="form-group">
@@ -62,12 +64,34 @@
 							$("#id_check").text("사용 가능한 아이디입니다.");
 							$("#id_check").css("color", "blue");
 							$("#idCheck").val("true");
-							if($("#idCheck").val()=="true" && $("#emailCheck").val()=="true") {
+							if($("#idCheck").val()=="true" && $("#emailCheck").val()=="true" && $("#pwdCheck").val()=="true") {
 								$("#button").prop("disabled", false);
 							}
 						}
 					}
 				});
+			}
+		});
+		
+		$("#pwd").blur(function() {
+			var userPwd = $('#pwd').val();
+			if(userPwd == ""){
+				$('#pwd_check').text('비밀번호를 입력해주세요.');
+				$('#pwd_check').css('color', 'red');
+				$("#pwdCheck").val("false");
+				$("#button").prop("disabled", true);
+			} else if(userPwd.length < 4 || userPwd.length > 20) {
+				$('#pwd_check').text('비밀번호를 4~20자리를 입력해주세요.');
+				$('#pwd_check').css('color', 'red');
+				$("#pwdCheck").val("false");
+				$("#button").prop("disabled", true);
+			} else {
+				$("#pwd_check").text("사용 가능한 비밀번호입니다.");
+				$("#pwd_check").css("color", "blue");
+				$("#pwdCheck").val("true");
+				if($("#idCheck").val()=="true" && $("#emailCheck").val()=="true" && $("#pwdCheck").val()=="true") {
+					$("#button").prop("disabled", false);
+				}
 			}
 		});
 		
@@ -98,7 +122,7 @@
 							$("#email_check").text("사용 가능한 이메일입니다.");
 							$("#email_check").css("color", "blue");
 							$("#emailCheck").val("true");
-							if($("#idCheck").val()=="true" && $("#emailCheck").val()=="true") {
+							if($("#idCheck").val()=="true" && $("#emailCheck").val()=="true" && $("#pwdCheck").val()=="true") {
 								$("#button").prop("disabled", false);
 							}
 						}
