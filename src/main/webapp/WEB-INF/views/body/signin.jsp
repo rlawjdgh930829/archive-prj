@@ -24,7 +24,7 @@
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password:</label>
-				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" path="memberPwd"/>
+				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" maxlength="20" path="memberPwd"/>
 				<font color="red"><form:errors path="memberPwd"></form:errors></font>				
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
