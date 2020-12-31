@@ -16,19 +16,19 @@
 		<form:form action="/signup" method="post" modelAttribute="memberDTO">
 			<div class="form-group">
 				<label for="id">ID:</label>
-				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" path="memberId"/>
+				<form:input type="text" class="form-control" id="id" placeholder="Enter id" name="memberId" maxlength="10" path="memberId"/>
 				<div id="id_check"></div>
 				<font color="red"><form:errors path="memberId"></form:errors></font>
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password:</label>
-				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" path="memberPwd"/>
+				<form:input type="password" class="form-control" id="pwd" placeholder="Enter password" name="memberPwd" maxlength="20" path="memberPwd"/>
 				<div id="pwd_check"></div>
 				<font color="red"><form:errors path="memberPwd"></form:errors></font>
 			</div>
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<form:input type="text" class="form-control" id="email" placeholder="Enter email" name="memberEmail" path="memberEmail"/>
+				<form:input type="text" class="form-control" id="email" placeholder="Enter email" name="memberEmail" maxlength="40" path="memberEmail"/>
 				<div id="email_check"></div>
 				<font color="red"><form:errors path="memberEmail"></form:errors></font>
 			</div>
