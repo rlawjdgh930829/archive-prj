@@ -38,4 +38,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.emailCheck(emailId);
 	}
 
+	@Override
+	public MemberDTO userCheckService(String userId) {
+		return memberDAO.userCheck(userId);
+	}
+
 }

@@ -9,5 +9,6 @@ public interface MemberService {
 	MemberDTO selectMemberService(LoginUserDTO user);
 	Integer idCheckService(String userId);
 	Integer emailCheckService(String emailId);
+	MemberDTO userCheckService(String userId);
 
 }
