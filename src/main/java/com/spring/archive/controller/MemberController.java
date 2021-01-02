@@ -3,6 +3,7 @@ package com.spring.archive.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,19 +42,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String signinView(Model model) {
+	public String signinView(Model model, @RequestParam(required=false)String MESSAGE) {
 		model.addAttribute(new LoginUserDTO());
+		model.addAttribute("MESSAGE", MESSAGE);
 		return "index.jsp?page=body/signin";
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public String signin(@Valid LoginUserDTO user, BindingResult bindingResult, HttpSession session) {
+	public String signin(@Valid LoginUserDTO user, BindingResult bindingResult, HttpSession session, Model model) {
 		String returnValue = "";
 		if(bindingResult.hasErrors()) {
 			returnValue = "index.jsp?page=body/signin";
 		} else {
 			MemberDTO selectMemberResult = memberService.selectMemberService(user);
 			if(selectMemberResult == null) {
+				String message = "";
+				MemberDTO userCheckResult = memberService.userCheckService(user.getMemberId());
+				if(userCheckResult == null) message = "noId";
+				if(userCheckResult != null) {
+					if(user.getMemberPwd() != userCheckResult.getMemberPwd()) {
+						message = "noPwd";
+					}
+				}
+				model.addAttribute("MESSAGE", message);
 				returnValue = "redirect:/signin";
 			} else {
 				session.setAttribute("USER", selectMemberResult);

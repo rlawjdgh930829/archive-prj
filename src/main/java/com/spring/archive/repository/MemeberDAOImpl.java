@@ -38,4 +38,9 @@ public class MemeberDAOImpl implements MemberDAO {
 		return session.selectOne("member.emailCheck", emailId);
 	}
 
+	@Override
+	public MemberDTO userCheck(String userId) {
+		return session.selectOne("member.userCheck", userId);
+	}
+
 }

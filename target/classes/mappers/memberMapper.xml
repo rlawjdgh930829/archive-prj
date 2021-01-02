@@ -27,4 +27,9 @@
 		where memberEmail = #{emailId}
 	</select>
 	
+	<select id="userCheck" parameterType="String" resultType="member">
+		select * from member
+		where memberId = #{userId}
+	</select>
+	
 </mapper>

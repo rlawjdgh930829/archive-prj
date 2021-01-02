@@ -10,5 +10,6 @@ public interface MemberDAO {
 	MemberDTO selectMember(LoginUserDTO user);
 	Integer idCheck(String userId);
 	Integer emailCheck(String emailId);
+	MemberDTO userCheck(String userId);
 	
 }

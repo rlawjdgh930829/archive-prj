@@ -8,6 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${ MESSAGE != null }">
+		<div class="alert alert-warning alert-dismissible">
+    		<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		<c:if test="${ MESSAGE == 'noId' }">
+    			<strong>존재하지 않는 아이디입니다.</strong>
+    		</c:if>
+    		<c:if test="${ MESSAGE == 'noPwd' }">
+    			<strong>비밀번호가 틀렸습니다.</strong>
+    		</c:if>
+  		</div>
+	</c:if>
 	<c:if test="${ ERROR == 'noLogin' }">
 		<div class="alert alert-warning alert-dismissible">
     		<button type="button" class="close" data-dismiss="alert">&times;</button>
