@@ -39,7 +39,6 @@ public class HomeController {
 		} else {
 			totalCountBoard = homeService.countCategoryBoardService(categoryNo, search);
 			paging = homeService.createPageService(totalCountBoard, nowPage, search);
-			if(paging.getLastPage() < Integer.parseInt(nowPage)) paging.setNowPage(paging.getLastPage()); 
 			paging.setCategoryNo(categoryNo);
 			getPagingBoard = homeService.pagingCategoryBoard(paging);
 		}

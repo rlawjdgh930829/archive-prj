@@ -21,6 +21,7 @@ public class PagingVO {
 		setperPage(perPage);
 		setTotalBoardCount(totalCountBoard);
 		calcLastPage(getTotalBoardCount(), getPerPage());
+		if(getLastPage() < nowPage) setNowPage(getLastPage());
 		calcStartEndPage(getNowPage(), maxPage);
 		calcStartEnd(getNowPage(), getPerPage());
 	}
