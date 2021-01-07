@@ -19,4 +19,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return session.selectList("category.getAllCategory");
 	}
 
+	@Override
+	public Integer getMaxCategoryNo() {
+		return session.selectOne("category.getMaxCategoryNo");
+	}
+
 }

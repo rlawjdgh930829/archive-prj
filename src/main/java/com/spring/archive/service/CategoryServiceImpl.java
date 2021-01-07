@@ -19,4 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.getAllCategory();
 	}
 
+	@Override
+	public Integer getMaxCategoryNo() {
+		return categoryDao.getMaxCategoryNo();
+	}
+
 }
