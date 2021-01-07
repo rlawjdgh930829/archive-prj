@@ -7,5 +7,6 @@ import com.spring.archive.domain.CategoryDTO;
 public interface CategoryDAO {
 	
 	List<CategoryDTO> getAllCategory();
+	Integer getMaxCategoryNo();
 	
 }

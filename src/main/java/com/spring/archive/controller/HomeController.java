@@ -30,15 +30,17 @@ public class HomeController {
 			@RequestParam(required=false)Integer categoryNo, @RequestParam(required=false)String search) {
 		Integer totalCountBoard = 0;
 		List<BoardDTO> getPagingBoard;
-		if(nowPage == null) nowPage = "1";
+		Integer intNowPage =Integer.parseInt(nowPage);
+		if(nowPage == null || intNowPage < 0) nowPage = "1";
 		if(search == null) search = "";
-		if(categoryNo == null || categoryNo == 0) {
+		if(categoryNo == null || categoryNo == 0 || categoryNo < 0 || categoryService.getMaxCategoryNo() < categoryNo) {
 			totalCountBoard = homeService.countBoardService(search);
 			paging = homeService.createPageService(totalCountBoard, nowPage, search);
 			getPagingBoard = homeService.pagingBoardService(paging);
 		} else {
 			totalCountBoard = homeService.countCategoryBoardService(categoryNo, search);
 			paging = homeService.createPageService(totalCountBoard, nowPage, search);
+			if(paging.getLastPage() < intNowPage) paging.setNowPage(paging.getLastPage()); 
 			paging.setCategoryNo(categoryNo);
 			getPagingBoard = homeService.pagingCategoryBoard(paging);
 		}

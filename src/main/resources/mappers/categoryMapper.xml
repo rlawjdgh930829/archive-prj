@@ -5,4 +5,7 @@
 	<select id="getAllCategory" resultType="category">
 		select * from category
 	</select>
+	<select id="getMaxCategoryNo" resultType="Integer">
+		select max(categoryNo) from category
+	</select>
 </mapper>
