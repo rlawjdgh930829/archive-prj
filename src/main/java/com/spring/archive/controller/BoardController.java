@@ -57,15 +57,20 @@ public class BoardController {
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detailView(@RequestParam Integer no, Model model, HttpServletRequest request, HttpServletResponse response) {
+		String returnValue = "";
 		boardService.boardViewCountUpService(no, request, response);
 		BoardDTO boardDetail = boardService.selectBoardService(no);
-		Integer commentCount = commentService.getCommentCountService(no);
-		List<CommentDTO> getComment = commentService.getCommentListService(no);
-		model.addAttribute("DETAIL", boardDetail);
-		model.addAttribute(new CommentDTO());
-		model.addAttribute("COMMENT", getComment);
-		model.addAttribute("COUNT", commentCount);
-		return "index.jsp?page=body/detail";
+		if(boardDetail == null) returnValue = "redirect:/";
+		else {
+			Integer commentCount = commentService.getCommentCountService(no);
+			List<CommentDTO> getComment = commentService.getCommentListService(no);
+			model.addAttribute("DETAIL", boardDetail);
+			model.addAttribute(new CommentDTO());
+			model.addAttribute("COMMENT", getComment);
+			model.addAttribute("COUNT", commentCount);
+			returnValue = "index.jsp?page=body/detail";
+		}
+		return returnValue;
 	}
 	
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
