@@ -17,7 +17,7 @@
 			<form:input type="hidden" value="${ USER.memberNo }" name="memberNo" path="memberNo"/>
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<form:input type="text" class="form-control" id="title" placeholder="Enter title" name="boardTitle" path="boardTitle"/>
+				<form:input type="text" class="form-control" id="title" placeholder="Enter title" name="boardTitle" maxlength="50" path="boardTitle"/>
 				<font color="red"><form:errors path="boardTitle"></form:errors></font>
 			</div>
 			<label for=category>Select list:</label>
