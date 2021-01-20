@@ -6,12 +6,14 @@
 	<form:form action="/commentwriting" method="post" modelAttribute="commentDTO">
 		<input type="hidden" value="${ DETAIL.boardNo }" name="boardNo">
 		<input type="hidden" value="${ USER.memberNo }" name="memberNo"/>
-		<div class="input-group mb-3">
-			<form:input type="text" class="form-control" placeholder="Comment" path="commentContent"/>
-			<div class="input-group-append">
-				<button class="btn btn-success" type="submit">submit</button>
+		<c:if test="${ USER != null }">
+			<div class="input-group mb-3">
+				<form:input type="text" class="form-control" placeholder="Comment" path="commentContent"/>
+				<div class="input-group-append">
+					<button class="btn btn-success" type="submit">submit</button>
+				</div>
 			</div>
-		</div>
+		</c:if>
 	</form:form>
 	Comment <span class="badge badge-pill badge-primary">${ COUNT }</span>
 	<c:if test="${fn:length(COMMENT) == 0}">
