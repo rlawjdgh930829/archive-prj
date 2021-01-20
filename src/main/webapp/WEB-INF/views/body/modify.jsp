@@ -16,7 +16,7 @@
 			<input type="hidden" value="${ DETAIL.boardNo }" name="boardNo">
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<input type="text" class="form-control" value="${ DETAIL.boardTitle }" id="title" placeholder="Enter title" name="boardTitle">
+				<input type="text" class="form-control" value="${ DETAIL.boardTitle }" id="title" maxlength="50" placeholder="Enter title" name="boardTitle">
 				<div id="titleCheckMessage"></div>
 			</div>
 			<label for=category>Select list:</label>
