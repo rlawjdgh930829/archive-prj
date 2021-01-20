@@ -12,8 +12,6 @@
 <body>
 	<div class="container">
 		<h2>글수정</h2>
-		<input type="hidden" id="titleCheck" value="false">
-		<input type="hidden" id="contentCheck" value="false">
 		<form action="/boardModify" method="post">
 			<input type="hidden" value="${ DETAIL.boardNo }" name="boardNo">
 			<div class="form-group">
@@ -35,7 +33,6 @@
 			<div class="form-group">
 				<label for="content">Contents:</label>
 				<textarea id="summernote" name="boardContent">${ DETAIL.boardContent }</textarea>
-				<div id="contentCheckMessage"></div>
 			</div>
 			<button id="button" type="submit" class="btn btn-primary">Submit</button>
 		</form>
@@ -49,10 +46,7 @@
 				$("#titleCheck").val("false");
 				$("#button").prop("disabled", true);
 			} else {
-				$("#titleCheck").val("true");
-				if($("#titleCheck").val()=="true" && $("#contentCheck").val()=="true") {
-					$("#button").prop("disabled", false);
-				}
+				$("#button").prop("disabled", false);
 			}
 		});
 		
