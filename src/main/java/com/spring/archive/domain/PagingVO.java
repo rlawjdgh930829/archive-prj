@@ -44,6 +44,7 @@ public class PagingVO {
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setQueryEnd(nowPage * cntPerPage);
 		setQueryStart(getQueryEnd() - cntPerPage);
+		if(getQueryStart() < 0) setQueryStart(0);
 	}
 	
 	public int getNowPage() {
